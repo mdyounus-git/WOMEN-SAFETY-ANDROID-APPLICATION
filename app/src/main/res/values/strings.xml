@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Women Safety</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="emergency_contacts">Emergency Contacts</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="sos_active">SOS Active</string>
+    <string name="stop_sos">Stop SOS</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    
+    <!-- Accessibility Service Description -->
+    <string name="accessibility_service_description">This service allows triggering emergency SOS by holding the Volume Up button for 6 seconds, even when the phone screen is off or locked. This helps you activate emergency alerts discreetly in dangerous situations.\n\nThe service:\n• Detects Volume Up button press\n• Works when screen is OFF/LOCKED\n• Sends location, photos, and audio to emergency contacts\n• Provides vibration feedback\n\nNo data is collected or shared. The service only activates when you hold Volume Up for 6 seconds.</string>
+</resources>
