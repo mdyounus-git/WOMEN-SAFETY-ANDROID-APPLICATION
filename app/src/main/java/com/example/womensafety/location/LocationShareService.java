@@ -65,7 +65,7 @@ public class LocationShareService extends Service {
     public static void sync(@NonNull Context context) {
         Prefs prefs = Prefs.get(context);
         boolean shouldRun = prefs.isSharingEnabled() && prefs.hasGuardians()
-                && Backend.isConfigured(context) && Permissions.hasLocation(context);
+                && Backend.isConfigured(context) && Permissions.canStartLocationServiceNow(context);
         Intent i = new Intent(context, LocationShareService.class);
         if (shouldRun) {
             try {

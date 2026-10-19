@@ -80,8 +80,13 @@ public class CrimeMapFragment extends Fragment implements GoogleMap.OnMarkerClic
         if (!MapsUtil.isKeyConfigured(requireContext())) {
             b.mapMissing.setVisibility(View.VISIBLE);
         } else {
+            // Added in code (not XML) so a missing API key can never crash the screen.
             SupportMapFragment f = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-            if (f != null) f.getMapAsync(this::onMapReady);
+            if (f == null) {
+                f = SupportMapFragment.newInstance();
+                getChildFragmentManager().beginTransaction().replace(R.id.map, f).commitNow();
+            }
+            f.getMapAsync(this::onMapReady);
         }
         showInitialCity();
     }

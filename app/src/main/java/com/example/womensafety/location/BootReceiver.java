@@ -24,6 +24,8 @@ public class BootReceiver extends BroadcastReceiver {
         }
         try {
             if (Prefs.get(context).isSosActive()) {
+                // SosTrigger checks permissions; without "Allow all the time" location it
+                // falls back to SMS so the circle still hears about it.
                 SosTrigger.start(context, SosTrigger.SOURCE_RESUME);
             }
             LocationShareService.sync(context);

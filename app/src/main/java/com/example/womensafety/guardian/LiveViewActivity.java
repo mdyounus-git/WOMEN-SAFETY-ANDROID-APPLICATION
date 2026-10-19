@@ -154,7 +154,10 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
             return;
         }
         SupportMapFragment f = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        if (f == null) return;
+        if (f == null) {
+            f = SupportMapFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().replace(R.id.map, f).commitNow();
+        }
         f.getMapAsync(m -> {
             map = m;
             MapsUtil.applyStyle(this, m, false);

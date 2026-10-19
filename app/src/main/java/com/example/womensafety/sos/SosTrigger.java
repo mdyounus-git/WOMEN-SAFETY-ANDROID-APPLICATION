@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import com.example.womensafety.core.Permissions;
+
 /** Entry points for starting and stopping SOS from anywhere in the app. */
 public final class SosTrigger {
 
@@ -21,6 +23,14 @@ public final class SosTrigger {
 
     /** Use when the app is on screen (e.g. the big SOS button). */
     public static void start(@NonNull Context context, @NonNull String source) {
+        if (!canRunService(context)) {
+            // No location, camera or microphone permission: a foreground service can't start,
+            // but text messages can still go out.
+            Log.w(TAG, "No SOS permissions granted; sending SMS only");
+            Haptics.sosConfirmed(context);
+            new SmsAlerter(context).send(null, false);
+            return;
+        }
         Intent i = new Intent(context, SosService.class)
                 .setAction(SosService.ACTION_START)
                 .putExtra(SosService.EXTRA_SOURCE, source);
@@ -50,6 +60,14 @@ public final class SosTrigger {
                 Log.e(TAG, "Could not start SOS", e2);
             }
         }
+    }
+
+    /** True if SosService is allowed to become a foreground service right now. */
+    static boolean canRunService(@NonNull Context c) {
+        boolean foreground = Permissions.isAppInForeground();
+        boolean location = Permissions.hasLocation(c) && (foreground || Permissions.hasBackgroundLocation(c));
+        boolean media = foreground && (Permissions.hasCamera(c) || Permissions.hasMicrophone(c));
+        return location || media;
     }
 
     public static void stop(@NonNull Context context) {

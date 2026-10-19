@@ -174,9 +174,11 @@ public class SosService extends Service implements Broadcaster.Listener {
      * volume-key trampoline); otherwise we fall back to location only.
      */
     private boolean goForeground() {
-        boolean loc = Permissions.hasLocation(this);
-        cameraOn = Permissions.hasCamera(this);
-        micOn = Permissions.hasMicrophone(this);
+        boolean foreground = Permissions.isAppInForeground();
+        boolean loc = Permissions.hasLocation(this) && (foreground || Permissions.hasBackgroundLocation(this));
+        // Android only allows camera/microphone in a service started while the app is visible.
+        cameraOn = foreground && Permissions.hasCamera(this);
+        micOn = foreground && Permissions.hasMicrophone(this);
         Notification n = buildNotification();
 
         int full = (loc ? ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION : 0)
@@ -186,6 +188,15 @@ public class SosService extends Service implements Broadcaster.Listener {
         cameraOn = false;
         micOn = false;
         if (loc && tryForeground(n, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION)) return true;
+        // Last resort: keep whichever single type works so the service never fails to start.
+        if (Permissions.hasMicrophone(this) && tryForeground(n, ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE)) {
+            micOn = true;
+            return true;
+        }
+        if (Permissions.hasCamera(this) && tryForeground(n, ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA)) {
+            cameraOn = true;
+            return true;
+        }
         Log.e(TAG, "Could not start SOS in the foreground");
         return false;
     }

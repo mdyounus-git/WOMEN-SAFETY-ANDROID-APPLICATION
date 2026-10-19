@@ -79,6 +79,23 @@ public final class Permissions {
         return nm == null || nm.canUseFullScreenIntent();
     }
 
+    /** True while one of the app's screens is visible. */
+    public static boolean isAppInForeground() {
+        android.app.ActivityManager.RunningAppProcessInfo info =
+                new android.app.ActivityManager.RunningAppProcessInfo();
+        android.app.ActivityManager.getMyMemoryState(info);
+        return info.importance <= android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND;
+    }
+
+    /**
+     * Whether a location foreground service may start right now. Android crashes an app whose
+     * service is started with startForegroundService() but can't then go to the foreground, so
+     * we check first: either a screen is visible, or "Allow all the time" location was granted.
+     */
+    public static boolean canStartLocationServiceNow(@NonNull Context c) {
+        return hasLocation(c) && (isAppInForeground() || hasBackgroundLocation(c));
+    }
+
     public static boolean isIgnoringBatteryOptimizations(@NonNull Context c) {
         PowerManager pm = c.getSystemService(PowerManager.class);
         return pm == null || pm.isIgnoringBatteryOptimizations(c.getPackageName());

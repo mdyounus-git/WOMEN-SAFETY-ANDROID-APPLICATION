@@ -35,7 +35,11 @@ public class SosLaunchActivity extends Activity {
         } catch (Exception e) {
             Log.e("SosLaunch", "Failed to start SOS service", e);
         }
-        finish();
-        overridePendingTransition(0, 0);
+        // Stay (invisibly) in front for a moment: the SOS service goes to the foreground
+        // while we are still visible, which is what Android requires for camera and mic.
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            finish();
+            overridePendingTransition(0, 0);
+        }, 1_500L);
     }
 }
