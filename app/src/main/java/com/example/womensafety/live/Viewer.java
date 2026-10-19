@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.womensafety.core.Backend;
+import com.example.womensafety.evidence.EvidenceStore;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -62,6 +63,12 @@ public final class Viewer {
     private final Context app;
     private final String wardUid;
     private final String myUid;
+    private final String wardName;
+    /** Saves the received live stream as MP4 on this (guardian's) phone. */
+    @Nullable
+    private Mp4Recorder recorder;
+    @Nullable
+    private EvidenceStore received;
     private final Listener listener;
     private final ExecutorService rtc = Executors.newSingleThreadExecutor();
     private final Executor rtcSafe = r -> {
@@ -95,11 +102,18 @@ public final class Viewer {
     private boolean previousSpeaker;
 
     public Viewer(@NonNull Context context, @NonNull String wardUid, @NonNull String myUid,
-                  @NonNull Listener listener) {
+                  @NonNull String wardName, @NonNull Listener listener) {
         this.app = context.getApplicationContext();
         this.wardUid = wardUid;
         this.myUid = myUid;
+        this.wardName = wardName;
         this.listener = listener;
+    }
+
+    /** True once the received stream is being saved on this phone. */
+    public boolean isRecording() {
+        Mp4Recorder r = recorder;
+        return r != null && r.isRecording();
     }
 
     /** EGL context needed to initialise the {@link SurfaceViewRenderer}. Main thread. */
@@ -177,6 +191,8 @@ public final class Viewer {
         routeAudioToSpeaker(false);
         rtcSafe.execute(() -> {
             disposePeer();
+            if (recorder != null) recorder.stop();
+            if (received != null) received.close();
             if (factory != null) factory.dispose();
             if (adm != null) adm.release();
             factory = null;
@@ -194,7 +210,12 @@ public final class Viewer {
     private void createFactory() {
         if (factory != null || closed) return;
         RtcEnv.ensureInitialized(app);
-        adm = JavaAudioDeviceModule.builder(app).createAudioDeviceModule();
+        adm = JavaAudioDeviceModule.builder(app)
+                .setPlaybackSamplesReadyCallback(samples -> {
+                    Mp4Recorder r = recorder;
+                    if (r != null) r.onAudio(samples);
+                })
+                .createAudioDeviceModule();
         factory = PeerConnectionFactory.builder()
                 .setAudioDeviceModule(adm)
                 .setVideoEncoderFactory(new DefaultVideoEncoderFactory(egl.getEglBaseContext(), true, true))
@@ -247,6 +268,7 @@ public final class Viewer {
         if (track instanceof VideoTrack) {
             remoteVideo = (VideoTrack) track;
             if (renderer != null) remoteVideo.addSink(renderer);
+            remoteVideo.addSink(ensureRecorder());
         } else if (track instanceof AudioTrack) {
             remoteAudio = (AudioTrack) track;
             remoteAudio.setVolume(muted ? 0 : 1);
@@ -307,10 +329,38 @@ public final class Viewer {
         }, offer);
     }
 
+    /** One recorder per live-view session; reconnects keep writing into the same session. */
+    private Mp4Recorder ensureRecorder() {
+        if (recorder == null) {
+            received = EvidenceStore.forReceivedStream(app, wardName);
+            final EvidenceStore store = received;
+            recorder = new Mp4Recorder(new Mp4Recorder.Output() {
+                @NonNull
+                @Override
+                public java.io.File newSegmentFile() {
+                    return store.newVideoFile();
+                }
+
+                @Override
+                public void onSegmentSaved(@NonNull java.io.File file, long durationMs) {
+                    store.onVideoSaved();
+                }
+            }, "rx");
+            recorder.start();
+        }
+        return recorder;
+    }
+
     private void disposePeer() {
         if (remoteVideo != null && renderer != null) {
             try {
                 remoteVideo.removeSink(renderer);
+            } catch (Throwable ignored) {
+            }
+        }
+        if (remoteVideo != null && recorder != null) {
+            try {
+                remoteVideo.removeSink(recorder);
             } catch (Throwable ignored) {
             }
         }

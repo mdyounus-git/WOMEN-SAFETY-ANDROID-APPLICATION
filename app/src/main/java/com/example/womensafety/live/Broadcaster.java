@@ -39,6 +39,7 @@ import org.webrtc.VideoSource;
 import org.webrtc.VideoTrack;
 import org.webrtc.audio.JavaAudioDeviceModule;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -95,7 +96,7 @@ public final class Broadcaster {
     private EglBase egl;
     private JavaAudioDeviceModule adm;
     private PeerConnectionFactory factory;
-    private CameraVideoCapturer capturer;
+    private volatile CameraVideoCapturer capturer;
     private SurfaceTextureHelper textureHelper;
     private VideoSource videoSource;
     private VideoTrack videoTrack;
@@ -103,6 +104,8 @@ public final class Broadcaster {
     private AudioTrack audioTrack;
     private FrameSnapshotter snapshotter;
     private AacClipEncoder aacEncoder;
+    private Mp4Recorder recorder;
+    private volatile boolean frontCamera;
     private AudioLoopback loopback;
     private FallbackRecorder fallback;
     private final Map<String, ViewerSession> viewers = new HashMap<>();
@@ -113,7 +116,7 @@ public final class Broadcaster {
     private boolean stopped;
 
     // ---- Backend (main thread) ----
-    private String uid;
+    private volatile String uid;
     private DatabaseReference callsRef;
     private DatabaseReference guardiansRef;
     private ChildEventListener callsListener;
@@ -146,6 +149,7 @@ public final class Broadcaster {
     public void attachBackend(@NonNull String wardUid) {
         if (uid != null) return;
         uid = wardUid;
+        publishCamera();
         guardiansRef = Backend.guardians(wardUid);
         guardiansListener = new ValueEventListener() {
             @Override
@@ -232,10 +236,30 @@ public final class Broadcaster {
             egl = EglBase.create();
 
             aacEncoder = useMic ? new AacClipEncoder(evidence) : null;
+            // Full video recording (MP4 with sound) of the live camera, saved on this phone.
+            recorder = useCamera ? new Mp4Recorder(new Mp4Recorder.Output() {
+                @NonNull
+                @Override
+                public File newSegmentFile() {
+                    return evidence.newVideoFile();
+                }
+
+                @Override
+                public void onSegmentSaved(@NonNull File file, long durationMs) {
+                    evidence.onVideoSaved();
+                }
+            }, "sos") : null;
             JavaAudioDeviceModule.Builder admBuilder = JavaAudioDeviceModule.builder(app)
                     .setUseHardwareAcousticEchoCanceler(true)
                     .setUseHardwareNoiseSuppressor(true);
-            if (aacEncoder != null) admBuilder.setSamplesReadyCallback(aacEncoder);
+            if (aacEncoder != null) {
+                final AacClipEncoder clips = aacEncoder;
+                final Mp4Recorder video = recorder;
+                admBuilder.setSamplesReadyCallback(samples -> {
+                    clips.onWebRtcAudioRecordSamplesReady(samples);
+                    if (video != null) video.onAudio(samples);
+                });
+            }
             adm = admBuilder.createAudioDeviceModule();
 
             PeerConnectionFactory.Options options = new PeerConnectionFactory.Options();
@@ -290,6 +314,12 @@ public final class Broadcaster {
         videoTrack.setEnabled(true);
         snapshotter = new FrameSnapshotter(evidence, SNAPSHOT_EVERY_MS);
         videoTrack.addSink(snapshotter);
+        if (recorder != null) {
+            videoTrack.addSink(recorder);
+            recorder.start();
+        }
+        frontCamera = enumerator.isFrontFacing(chosen);
+        publishCamera();
     }
 
     private void doSwitchCamera() {
@@ -297,6 +327,8 @@ public final class Broadcaster {
         capturer.switchCamera(new CameraVideoCapturer.CameraSwitchHandler() {
             @Override
             public void onCameraSwitchDone(boolean isFrontCamera) {
+                frontCamera = isFrontCamera;
+                publishCamera();
                 Log.i(TAG, "Camera switched, front=" + isFrontCamera);
             }
 
@@ -328,6 +360,8 @@ public final class Broadcaster {
             if (loopback != null) loopback.stop();
             if (fallback != null) fallback.stop();
             if (videoTrack != null && snapshotter != null) videoTrack.removeSink(snapshotter);
+            if (videoTrack != null && recorder != null) videoTrack.removeSink(recorder);
+            if (recorder != null) recorder.stop();
             if (snapshotter != null) snapshotter.close();
             if (capturer != null) {
                 try {
@@ -350,6 +384,18 @@ public final class Broadcaster {
             Log.w(TAG, "Error while releasing media", t);
         }
         Log.i(TAG, "Media stopped");
+    }
+
+    /** Tells guardians which camera is live, so their Front / Back switch shows it. */
+    private void publishCamera() {
+        String id = uid;
+        if (id == null || !useCamera || capturer == null) return;
+        Backend.sos(id).child("camera").setValue(frontCamera ? "front" : "back");
+    }
+
+    /** Number of video segments saved so far. */
+    public int getVideoCount() {
+        return evidence.getVideoCount();
     }
 
     // ===================== Viewers (guardians) =====================

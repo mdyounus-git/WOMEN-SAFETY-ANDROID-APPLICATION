@@ -77,6 +77,9 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
     private boolean firstFix = true;
 
     private boolean sosActive;
+    /** Which of her cameras is live (reported by her phone). Back camera by default. */
+    private boolean cameraFront;
+    private boolean cameraSwitching;
     private String sosSession;
     @Nullable
     private Viewer viewer;
@@ -124,9 +127,9 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
         b.back.setOnClickListener(v -> finish());
         b.call.setOnClickListener(v -> call());
         b.directions.setOnClickListener(v -> directions());
-        b.switchCamera.setOnClickListener(v -> {
-            if (viewer != null) viewer.switchCamera();
-        });
+        b.camFront.setOnClickListener(v -> requestCamera(true));
+        b.camBack.setOnClickListener(v -> requestCamera(false));
+        renderCamera();
         b.mute.setOnClickListener(v -> toggleMute());
         b.statusPill.setOnClickListener(v -> {
             if (viewer != null && videoState == Viewer.State.FAILED) viewer.requestStream();
@@ -195,6 +198,12 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
             @Override
             public void onDataChange(@NonNull DataSnapshot s) {
                 Boolean active = s.child("active").getValue(Boolean.class);
+                String cam = s.child("camera").getValue(String.class);
+                if (cam != null) {
+                    cameraFront = "front".equals(cam);
+                    cameraSwitching = false;
+                    renderCamera();
+                }
                 onSos(Boolean.TRUE.equals(active), s.child("sessionId").getValue(String.class));
             }
 
@@ -291,6 +300,7 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
 
     private void showSafeState() {
         stopVideo();
+        b.recPill.setVisibility(View.GONE);
         b.privacyPanel.setVisibility(View.VISIBLE);
         b.snapshot.setVisibility(View.GONE);
         b.video.setVisibility(View.GONE);
@@ -315,7 +325,7 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
 
     private void startVideo() {
         if (viewer != null || myUid == null) return;
-        viewer = new Viewer(this, wardUid, myUid, this);
+        viewer = new Viewer(this, wardUid, myUid, wardName, this);
         if (!rendererReady) {
             b.video.init(viewer.eglContext(), null);
             b.video.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
@@ -351,6 +361,7 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
             case LIVE:
                 setPill(R.string.live_pill_live, R.color.ws_sos);
                 b.snapshot.setVisibility(View.GONE);
+                b.recPill.setVisibility(View.VISIBLE);
                 break;
             case RECONNECTING:
                 setPill(R.string.live_pill_reconnecting, R.color.ws_warn);
@@ -405,6 +416,38 @@ public class LiveViewActivity extends AppCompatActivity implements Viewer.Listen
     }
 
     // ------------------------------------------------------------------ actions
+
+    /** Asks her phone to use the front or back camera (no-op if already on it). */
+    private void requestCamera(boolean front) {
+        if (viewer == null || cameraSwitching || front == cameraFront) return;
+        cameraSwitching = true;
+        viewer.switchCamera();
+        Toast.makeText(this, getString(R.string.live_cam_switching,
+                getString(front ? R.string.live_cam_front : R.string.live_cam_back).toLowerCase()),
+                Toast.LENGTH_SHORT).show();
+        // Her phone reports back which camera is live; give up waiting after a few seconds.
+        main.postDelayed(() -> {
+            cameraSwitching = false;
+            renderCamera();
+        }, 5_000L);
+        renderCamera();
+    }
+
+    private void renderCamera() {
+        if (b == null) return;
+        styleCameraOption(b.camFront, cameraFront);
+        styleCameraOption(b.camBack, !cameraFront);
+        b.cameraSwitch.setAlpha(cameraSwitching ? 0.6f : 1f);
+    }
+
+    private void styleCameraOption(android.widget.TextView option, boolean selected) {
+        int fg = selected ? 0xFF1F1524 : 0xFFFFFFFF;
+        option.setTextColor(fg);
+        option.setCompoundDrawableTintList(android.content.res.ColorStateList.valueOf(fg));
+        option.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
+                selected ? 0xFFFFFFFF : 0x00000000));
+        option.setSelected(selected);
+    }
 
     private void toggleMute() {
         if (viewer == null) return;

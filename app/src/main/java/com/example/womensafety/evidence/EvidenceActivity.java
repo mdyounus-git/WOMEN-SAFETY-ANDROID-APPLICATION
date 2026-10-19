@@ -107,9 +107,13 @@ public class EvidenceActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull SessionHolder h, int position) {
             EvidenceStore.Session s = sessions.get(position);
-            h.b.date.setText(DateUtils.formatDateTime(EvidenceActivity.this, s.startedAt,
-                    DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_MONTH));
+            String when = DateUtils.formatDateTime(EvidenceActivity.this, s.startedAt,
+                    DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_ABBREV_MONTH);
+            String who = s.receivedFrom != null ? getString(R.string.evidence_from, s.receivedFrom)
+                    : getString(R.string.evidence_mine);
+            h.b.date.setText(who + " · " + when);
             h.b.counts.setText(getString(R.string.evidence_counts,
+                    getResources().getQuantityString(R.plurals.videos, s.videos.size(), s.videos.size()),
                     getResources().getQuantityString(R.plurals.photos, s.photos.size(), s.photos.size()),
                     getResources().getQuantityString(R.plurals.clips, s.audio.size(), s.audio.size())));
             h.b.photos.setVisibility(s.photos.isEmpty() ? View.GONE : View.VISIBLE);
@@ -118,6 +122,17 @@ public class EvidenceActivity extends AppCompatActivity {
             h.b.photos.setAdapter(new PhotoAdapter(s.photos));
 
             h.b.audioList.removeAllViews();
+            for (File f : s.videos) {
+                ItemEvidenceAudioBinding row = ItemEvidenceAudioBinding.inflate(getLayoutInflater(),
+                        h.b.audioList, false);
+                row.label.setText(getString(R.string.evidence_video_label,
+                        DateUtils.formatDateTime(EvidenceActivity.this, f.lastModified(), DateUtils.FORMAT_SHOW_TIME)));
+                row.play.setIconResource(R.drawable.ic_videocam);
+                row.play.setContentDescription(getString(R.string.evidence_play_video));
+                row.play.setOnClickListener(v -> view(f, "video/mp4"));
+                row.getRoot().setOnClickListener(v -> view(f, "video/mp4"));
+                h.b.audioList.addView(row.getRoot());
+            }
             for (File f : s.audio) {
                 ItemEvidenceAudioBinding row = ItemEvidenceAudioBinding.inflate(getLayoutInflater(),
                         h.b.audioList, false);
@@ -266,6 +281,7 @@ public class EvidenceActivity extends AppCompatActivity {
         try {
             for (File f : s.photos) uris.add(uriFor(f));
             for (File f : s.audio) uris.add(uriFor(f));
+            for (File f : s.videos) uris.add(uriFor(f));
         } catch (IllegalArgumentException e) {
             Toast.makeText(this, R.string.error_generic, Toast.LENGTH_SHORT).show();
             return;

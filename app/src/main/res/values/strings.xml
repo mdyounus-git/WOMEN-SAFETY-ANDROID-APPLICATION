@@ -68,11 +68,11 @@
     <string name="sos_button_desc">SOS. Press and hold for 2 seconds to send an alert.</string>
     <string name="sos_button_desc_active">SOS is active. Press and hold for 2 seconds to stop.</string>
     <string name="sos_live_title">SOS is active</string>
-    <string name="sos_live_note_media">Live location, camera and microphone are being shared with your circle and saved as evidence.</string>
+    <string name="sos_live_note_media">Live location, camera and microphone are being shared with your circle. Video, photos and audio are being recorded as evidence.</string>
     <string name="sos_live_note_no_media">Sharing live location. Allow camera and microphone in Safety setup to also stream and record.</string>
     <string name="stat_watching">watching</string>
     <string name="stat_photos">photos</string>
-    <string name="stat_clips">clips</string>
+    <string name="stat_clips">recordings</string>
     <string name="stat_sms">SMS sent</string>
     <string name="sos_confirm_title">Send SOS now?</string>
     <string name="sos_confirm_text">Your circle will be alerted with your live location, camera and microphone.</string>
@@ -119,7 +119,7 @@
     <string name="watch_notif_title">Watching over your circle</string>
     <string name="watch_notif_text_generic">You\'ll get an alarm if someone starts an SOS.</string>
     <string name="alert_title">%1$s needs help</string>
-    <string name="alert_text">SOS started. Tap to see her live location, camera and microphone.</string>
+    <string name="alert_text">SOS started. Tap to see her live location, camera and microphone. The live stream is recorded on your phone.</string>
     <string name="alert_action_view">Open live view</string>
 
     <!-- Circle -->
@@ -184,7 +184,11 @@
     <string name="live_privacy_title">Camera and mic are off</string>
     <string name="live_privacy_text">They turn on only when %1$s starts an SOS. Until then you see her live location.</string>
     <string name="live_mute">Mute her microphone</string>
-    <string name="live_switch_camera">Switch her camera</string>
+    <string name="live_switch_camera">Switch her camera between front and back</string>
+    <string name="live_cam_front">Front</string>
+    <string name="live_cam_back">Back</string>
+    <string name="live_cam_switching">Switching to %1$s camera…</string>
+    <string name="live_rec">REC · saving on this phone</string>
     <string name="live_state_safe">No SOS</string>
     <string name="live_state_sos">SOS active</string>
     <string name="live_subtitle_safe">Location shared · updated %1$s</string>
@@ -285,9 +289,13 @@
 
     <!-- Evidence -->
     <string name="evidence_title">Evidence vault</string>
-    <string name="evidence_body">Photos and audio recorded during each SOS. Kept privately on this phone.</string>
+    <string name="evidence_body">Video, photos and audio recorded during each SOS — yours, and live streams you watched from your circle. Kept privately on this phone.</string>
     <string name="evidence_empty">Nothing here yet. If you ever start an SOS, photos and audio will be saved here automatically.</string>
-    <string name="evidence_counts">%1$s · %2$s</string>
+    <string name="evidence_counts">%1$s · %2$s · %3$s</string>
+    <string name="evidence_video_label">Video · %1$s</string>
+    <string name="evidence_play_video">Play video</string>
+    <string name="evidence_from">Live stream from %1$s</string>
+    <string name="evidence_mine">Your SOS</string>
     <string name="evidence_audio_label">Audio · %1$s</string>
     <string name="evidence_photo_desc">SOS photo</string>
     <string name="evidence_play">Play audio</string>
@@ -330,6 +338,10 @@
     <plurals name="photos">
         <item quantity="one">%d photo</item>
         <item quantity="other">%d photos</item>
+    </plurals>
+    <plurals name="videos">
+        <item quantity="one">%d video</item>
+        <item quantity="other">%d videos</item>
     </plurals>
     <plurals name="clips">
         <item quantity="one">%d audio clip</item>

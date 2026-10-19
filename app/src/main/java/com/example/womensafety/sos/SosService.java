@@ -274,7 +274,7 @@ public class SosService extends Service implements Broadcaster.Listener {
         if (!running) return;
         SosState.publish(new SosState.Status(true, startedAt, smsSent, viewers,
                 evidence == null ? 0 : evidence.getPhotoCount(),
-                evidence == null ? 0 : evidence.getAudioCount(), cameraOn, micOn));
+                evidence == null ? 0 : evidence.getAudioCount() + evidence.getVideoCount(), cameraOn, micOn));
     }
 
     private Notification buildNotification() {

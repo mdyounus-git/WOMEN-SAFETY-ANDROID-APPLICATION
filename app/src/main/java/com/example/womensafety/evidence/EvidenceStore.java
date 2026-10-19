@@ -43,12 +43,40 @@ public final class EvidenceStore {
     private volatile DatabaseReference remote;
     private volatile int photoCount;
     private volatile int audioCount;
+    private volatile int videoCount;
+    private static final String LABEL_FILE = "from.txt";
 
     public EvidenceStore(@NonNull Context context, @NonNull String sessionId) {
         this.sessionId = sessionId;
         this.dir = new File(new File(context.getFilesDir(), ROOT), sessionId);
         //noinspection ResultOfMethodCallIgnored
         dir.mkdirs();
+    }
+
+    /**
+     * Storage on a guardian's phone for the live stream received from someone's SOS. Kept as its
+     * own session, labelled with her name, in the same Evidence vault.
+     */
+    @NonNull
+    public static EvidenceStore forReceivedStream(@NonNull Context context, @NonNull String fromName) {
+        EvidenceStore store = new EvidenceStore(context, System.currentTimeMillis() + "-rx");
+        write(new File(store.dir, LABEL_FILE), fromName.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        return store;
+    }
+
+    /** A fresh file name for the next video segment. */
+    @NonNull
+    public File newVideoFile() {
+        return new File(dir, "video_" + System.currentTimeMillis() + ".mp4");
+    }
+
+    /** Counts a finished video segment (videos stay on the phone: too big for the free cloud tier). */
+    public void onVideoSaved() {
+        videoCount++;
+    }
+
+    public int getVideoCount() {
+        return videoCount;
     }
 
     /** Starts mirroring new evidence to the cloud for this user. */
@@ -160,12 +188,19 @@ public final class EvidenceStore {
         public final long startedAt;
         public final List<File> photos;
         public final List<File> audio;
+        public final List<File> videos;
+        /** Set for streams received from someone else's SOS (her name); null for your own. */
+        @Nullable
+        public final String receivedFrom;
 
-        Session(String id, long startedAt, List<File> photos, List<File> audio) {
+        Session(String id, long startedAt, List<File> photos, List<File> audio, List<File> videos,
+                @Nullable String receivedFrom) {
             this.id = id;
             this.startedAt = startedAt;
             this.photos = photos;
             this.audio = audio;
+            this.videos = videos;
+            this.receivedFrom = receivedFrom;
         }
     }
 
@@ -189,7 +224,7 @@ public final class EvidenceStore {
                 long newest = 0;
                 for (File f : oldPhotos) newest = Math.max(newest, f.lastModified());
                 for (File f : oldAudio) newest = Math.max(newest, f.lastModified());
-                sessions.add(new Session("legacy", newest, oldPhotos, oldAudio));
+                sessions.add(new Session("legacy", newest, oldPhotos, oldAudio, new ArrayList<>(), null));
             }
         }
         Collections.sort(sessions, (a, b) -> Long.compare(b.startedAt, a.startedAt));
@@ -200,8 +235,17 @@ public final class EvidenceStore {
     private static Session readSession(String id, File d, long startedAt) {
         List<File> photos = listFiles(d, ".jpg");
         List<File> audio = listFiles(d, ".aac");
-        if (photos.isEmpty() && audio.isEmpty()) return null;
-        return new Session(id, startedAt, photos, audio);
+        List<File> videos = listFiles(d, ".mp4");
+        if (photos.isEmpty() && audio.isEmpty() && videos.isEmpty()) return null;
+        String from = null;
+        File label = new File(d, LABEL_FILE);
+        if (label.exists()) {
+            try {
+                from = new String(readAll(label), java.nio.charset.StandardCharsets.UTF_8).trim();
+            } catch (IOException ignored) {
+            }
+        }
+        return new Session(id, startedAt, photos, audio, videos, from);
     }
 
     private static long parseStart(String sessionId, long fallback) {
@@ -225,8 +269,11 @@ public final class EvidenceStore {
         boolean ok = true;
         for (File f : session.photos) ok &= f.delete();
         for (File f : session.audio) ok &= f.delete();
+        for (File f : session.videos) ok &= f.delete();
         if (!"legacy".equals(session.id)) {
             File d = new File(new File(context.getFilesDir(), ROOT), session.id);
+            File[] rest = d.listFiles();
+            if (rest != null) for (File f : rest) ok &= f.delete(); // label, unfinished parts
             //noinspection ResultOfMethodCallIgnored
             d.delete();
         }
