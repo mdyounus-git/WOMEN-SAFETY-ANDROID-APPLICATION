@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/mapMissing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="40dp"
+        android:text="@string/map_key_missing"
+        android:textAppearance="@style/TextAppearance.WS.Body"
+        android:visibility="gone" />
+
+    <!-- Floating header -->
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.WS.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/map_title"
+                    android:textAppearance="@style/TextAppearance.WS.HeadlineSmall" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/map_subtitle"
+                    android:textAppearance="@style/TextAppearance.WS.BodySmall" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WS.Pill"
+                        android:background="@null"
+                        android:drawableStart="@drawable/bg_dot"
+                        android:drawablePadding="6dp"
+                        android:drawableTint="@color/ws_risk_low"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/level_low"
+                        android:textColor="@color/ws_ink_muted" />
+
+                    <TextView
+                        style="@style/WS.Pill"
+                        android:background="@null"
+                        android:drawableStart="@drawable/bg_dot"
+                        android:drawablePadding="6dp"
+                        android:drawableTint="@color/ws_risk_moderate"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/level_moderate"
+                        android:textColor="@color/ws_ink_muted" />
+
+                    <TextView
+                        style="@style/WS.Pill"
+                        android:background="@null"
+                        android:drawableStart="@drawable/bg_dot"
+                        android:drawablePadding="6dp"
+                        android:drawableTint="@color/ws_risk_high"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/level_high"
+                        android:textColor="@color/ws_ink_muted" />
+
+                    <TextView
+                        style="@style/WS.Pill"
+                        android:background="@null"
+                        android:drawableStart="@drawable/bg_dot"
+                        android:drawablePadding="6dp"
+                        android:drawableTint="@color/ws_risk_very_high"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
+                        android:text="@string/level_very_high"
+                        android:textColor="@color/ws_ink_muted" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/myLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/map_my_location"
+        app:backgroundTint="@color/ws_surface"
+        app:fabSize="mini"
+        app:layout_anchor="@id/sheet"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@drawable/ic_my_location"
+        app:tint="@color/ws_plum" />
+
+    <!-- City details sheet -->
+    <LinearLayout
+        android:id="@+id/sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_sheet"
+        android:elevation="12dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="22dp"
+        android:paddingTop="10dp"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="232dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_sheet_handle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cityName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.WS.Headline"
+                    tools:text="Bhopal" />
+
+                <TextView
+                    android:id="@+id/cityMeta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.WS.BodySmall"
+                    tools:text="Madhya Pradesh · NCRB 2023" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/levelPill"
+                style="@style/WS.Pill"
+                android:background="@drawable/bg_pill"
+                android:backgroundTint="@color/ws_risk_very_high"
+                android:textColor="@color/white"
+                tools:text="Very high" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFeatureSettings="tnum"
+                android:textAppearance="@style/TextAppearance.WS.Display"
+                tools:text="210.0" />
+
+            <TextView
+                android:id="@+id/rateUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.WS.Body"
+                tools:text="crimes against women per lakh population" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/comparison"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.WS.Title"
+            tools:text="1.9× the average of these 34 cities · 1,886 cases" />
+
+        <TextView
+            android:id="@+id/source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.WS.BodySmall"
+            tools:text="Source: NCRB Crime in India 2023, Table 3B.1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/map_disclaimer"
+            android:textAppearance="@style/TextAppearance.WS.BodySmall"
+            android:textColor="@color/ws_ink_faint" />
+
+        <TextView
+            android:id="@+id/newsLabel"
+            style="@style/WS.SectionLabel"
+            android:layout_marginTop="20dp"
+            tools:text="Recent news in Bhopal" />
+
+        <LinearLayout
+            android:id="@+id/newsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/newsEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:text="@string/map_news_loading"
+            android:textAppearance="@style/TextAppearance.WS.Body" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ws_nav_clearance" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

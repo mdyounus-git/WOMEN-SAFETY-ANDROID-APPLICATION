@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===== Typography: Fraunces (display serif) + Manrope (UI sans) ===== -->
+    <style name="TextAppearance.WS.Display" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/fraunces_semibold</item>
+        <item name="android:fontFamily">@font/fraunces_semibold</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.WS.Headline" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/fraunces_semibold</item>
+        <item name="android:fontFamily">@font/fraunces_semibold</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.WS.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/fraunces_semibold</item>
+        <item name="android:fontFamily">@font/fraunces_semibold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.WS.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/manrope_bold</item>
+        <item name="android:fontFamily">@font/manrope_bold</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.WS.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/manrope_bold</item>
+        <item name="android:fontFamily">@font/manrope_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.WS.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/manrope_semibold</item>
+        <item name="android:fontFamily">@font/manrope_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.WS.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/manrope_regular</item>
+        <item name="android:fontFamily">@font/manrope_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="TextAppearance.WS.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/manrope_regular</item>
+        <item name="android:fontFamily">@font/manrope_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="TextAppearance.WS.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/manrope_medium</item>
+        <item name="android:fontFamily">@font/manrope_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="TextAppearance.WS.Label" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/manrope_bold</item>
+        <item name="android:fontFamily">@font/manrope_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="TextAppearance.WS.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/manrope_semibold</item>
+        <item name="android:fontFamily">@font/manrope_semibold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- Small caps-style eyebrow label above sections -->
+    <style name="TextAppearance.WS.Overline" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/manrope_extrabold</item>
+        <item name="android:fontFamily">@font/manrope_extrabold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.14</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- ===== Shapes ===== -->
+    <style name="Shape.WS.Small" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/ws_radius_small</item>
+    </style>
+
+    <style name="Shape.WS.Medium" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item>
+    </style>
+
+    <style name="Shape.WS.Large" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/ws_radius_card</item>
+    </style>
+
+    <style name="Shape.WS.Sheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">28dp</item>
+        <item name="cornerSizeTopRight">28dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="Shape.WS.Pill" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- ===== Components ===== -->
+    <style name="Widget.WS.Card" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardBackgroundColor">@color/ws_surface</item>
+        <item name="strokeColor">@color/ws_outline</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="shapeAppearance">@style/Shape.WS.Large</item>
+    </style>
+
+    <!-- Tinted card for highlighted panels -->
+    <style name="Widget.WS.Card.Plum" parent="Widget.WS.Card">
+        <item name="cardBackgroundColor">@color/ws_plum_container</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.WS.Card.Soft" parent="Widget.WS.Card">
+        <item name="cardBackgroundColor">@color/ws_surface_soft</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.WS.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.WS.Label</item>
+        <item name="shapeAppearance">@style/Shape.WS.Pill</item>
+        <item name="android:paddingStart">22dp</item>
+        <item name="android:paddingEnd">22dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.WS.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.WS.Label</item>
+        <item name="shapeAppearance">@style/Shape.WS.Pill</item>
+        <item name="backgroundTint">@color/ws_plum_container</item>
+        <item name="android:textColor">@color/ws_on_plum_container</item>
+        <item name="iconTint">@color/ws_on_plum_container</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.WS.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.WS.Label</item>
+        <item name="shapeAppearance">@style/Shape.WS.Pill</item>
+        <item name="strokeColor">@color/ws_outline_strong</item>
+        <item name="android:textColor">@color/ws_ink</item>
+        <item name="iconTint">@color/ws_ink</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.WS.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textAppearance">@style/TextAppearance.WS.Label</item>
+        <item name="shapeAppearance">@style/Shape.WS.Pill</item>
+    </style>
+
+    <style name="Widget.WS.Button.Danger" parent="Widget.WS.Button">
+        <item name="backgroundTint">@color/ws_sos</item>
+        <item name="android:textColor">@color/ws_on_sos</item>
+        <item name="iconTint">@color/ws_on_sos</item>
+    </style>
+
+    <style name="Widget.WS.IconButton" parent="Widget.Material3.Button.IconButton.Filled.Tonal">
+        <item name="backgroundTint">@color/ws_surface_soft</item>
+        <item name="iconTint">@color/ws_ink</item>
+    </style>
+
+    <style name="Widget.WS.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="android:textAppearance">@style/TextAppearance.WS.LabelMedium</item>
+        <item name="chipBackgroundColor">@color/chip_bg</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="chipStrokeColor">@color/chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipMinHeight">38dp</item>
+        <item name="shapeAppearance">@style/Shape.WS.Pill</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipIconVisible">false</item>
+    </style>
+
+    <style name="Widget.WS.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="boxStrokeColor">@color/ws_plum</item>
+        <item name="boxBackgroundColor">@color/ws_surface</item>
+        <item name="boxBackgroundMode">outline</item>
+    </style>
+
+    <style name="Widget.WS.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="itemIconTint">@color/nav_item</item>
+        <item name="itemTextColor">@color/nav_item</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.WS.BottomNav.Indicator</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.WS.LabelMedium</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.WS.LabelMedium</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Widget.WS.BottomNav.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/ws_plum_container</item>
+    </style>
+
+    <!-- Status pill (e.g. "Sharing live location") -->
+    <style name="WS.Pill" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">@style/TextAppearance.WS.LabelMedium</item>
+    </style>
+
+    <!-- Tappable settings-style row: icon, label, chevron -->
+    <style name="WS.Row" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:drawableTint">@color/ws_plum</item>
+        <item name="android:drawableEnd">@drawable/ic_chevron_right</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textAppearance">@style/TextAppearance.WS.Title</item>
+    </style>
+
+    <style name="WS.SectionLabel" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.WS.Overline</item>
+        <item name="android:layout_marginTop">28dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:paddingStart">4dp</item>
+    </style>
+</resources>

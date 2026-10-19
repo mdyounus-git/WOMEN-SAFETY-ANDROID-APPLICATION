@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ws_paper">#141016</color>
+    <color name="ws_surface">#1E1821</color>
+    <color name="ws_surface_soft">#272029</color>
+    <color name="ws_surface_sunken">#110D13</color>
+    <color name="ws_outline">#352C38</color>
+    <color name="ws_outline_strong">#4A3F4E</color>
+
+    <color name="ws_ink">#F3ECF5</color>
+    <color name="ws_ink_muted">#ADA1B2</color>
+    <color name="ws_ink_faint">#7D7281</color>
+
+    <color name="ws_plum">#D3A9E6</color>
+    <color name="ws_plum_deep">#E7CCF2</color>
+    <color name="ws_on_plum">#3A1149</color>
+    <color name="ws_plum_container">#4A2159</color>
+    <color name="ws_on_plum_container">#F3E2FA</color>
+
+    <color name="ws_sos">#FF6B70</color>
+    <color name="ws_sos_deep">#E2434B</color>
+    <color name="ws_on_sos">#2E0306</color>
+    <color name="ws_sos_container">#5A1A1F</color>
+    <color name="ws_on_sos_container">#FFD9D8</color>
+
+    <color name="ws_safe">#6FD3A8</color>
+    <color name="ws_safe_container">#173B2D</color>
+    <color name="ws_warn">#F2BE55</color>
+    <color name="ws_warn_container">#3F2E0B</color>
+
+    <color name="ws_risk_low">#5CC79A</color>
+    <color name="ws_risk_moderate">#EAC04D</color>
+    <color name="ws_risk_high">#F28A52</color>
+    <color name="ws_risk_very_high">#FF5E6C</color>
+    <color name="ws_risk_unknown">#8C8190</color>
+
+    <color name="ws_scrim">#CC000000</color>
+</resources>

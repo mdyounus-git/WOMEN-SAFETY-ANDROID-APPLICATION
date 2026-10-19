@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.womensafety">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permissions -->
+    <!-- Network: live sharing, news, maps -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Location: always-on sharing with the circle, and SOS -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!-- Camera + microphone: ONLY used while SOS is active -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- SMS fallback to emergency contacts (works without internet) -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <!-- Background services and alerts -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <!-- Hardware Features -->
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
-    <uses-feature android:name="android.hardware.location" android:required="false" />
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
     <uses-feature android:name="android.hardware.microphone" android:required="false" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -45,55 +49,101 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WomenSafety"
-        tools:targetApi="31">
+        tools:targetApi="36">
 
-        <!-- Splash Screen - LAUNCHER -->
+        <!-- Google Maps key comes from local.properties (MAPS_API_KEY). See README. -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <!-- ===== Screens ===== -->
         <activity
-            android:name="com.example.womensafety.SplashActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.WomenSafety">
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.WomenSafety.Launch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- Scanning the circle QR with any camera app opens us here. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="wsafety" android:host="join" />
+            </intent-filter>
         </activity>
 
-        <!-- Login Activity -->
         <activity
-            android:name="com.example.womensafety.LoginActivity"
+            android:name=".ui.OnboardingActivity"
             android:exported="false"
-            android:theme="@style/Theme.WomenSafety" />
+            android:windowSoftInputMode="adjustResize" />
 
-        <!-- Main Activity -->
         <activity
-            android:name="com.example.womensafety.MainActivity"
-            android:exported="false"
-            android:launchMode="singleTop" />
+            android:name=".ui.SetupActivity"
+            android:exported="false" />
 
-        <!-- Gallery Activity -->
         <activity
-            android:name="com.example.womensafety.GalleryActivity"
-            android:exported="false"
-            android:label="SOS Gallery" />
+            android:name=".ui.ProfileActivity"
+            android:exported="false" />
 
-        <!-- Profile Activity -->
         <activity
-            android:name="com.example.womensafety.ProfileActivity"
-            android:exported="false"
-            android:label="Profile" />
+            android:name=".circle.InviteActivity"
+            android:exported="false" />
 
-        <!-- SOS Service -->
+        <activity
+            android:name=".guardian.LiveViewActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:showWhenLocked="true"
+            android:theme="@style/Theme.WomenSafety.Live"
+            android:turnScreenOn="true"
+            tools:targetApi="27" />
+
+        <activity
+            android:name=".evidence.EvidenceActivity"
+            android:exported="false" />
+
+        <!-- Invisible trampoline used by the volume-button SOS (works over the lock screen). -->
+        <activity
+            android:name=".sos.SosLaunchActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:showWhenLocked="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.WomenSafety.Transparent"
+            android:turnScreenOn="true"
+            tools:targetApi="27" />
+
+        <!-- ===== Services ===== -->
         <service
-            android:name="com.example.womensafety.SOSService"
-            android:enabled="true"
+            android:name=".sos.SosService"
             android:exported="false"
             android:foregroundServiceType="location|camera|microphone" />
 
-        <!-- Volume Button Accessibility Service -->
         <service
-            android:name="com.example.womensafety.VolumeButtonAccessibilityService"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:exported="true">
+            android:name=".location.LocationShareService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <service
+            android:name=".guardian.GuardianWatchService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Keeps a connection open so a guardian's phone can ring an alarm the moment a family member triggers an SOS." />
+        </service>
+
+        <!-- The "special permission": hold Volume Up for 6 seconds to trigger SOS. -->
+        <service
+            android:name=".sos.VolumeSosService"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
@@ -102,7 +152,15 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <!-- FileProvider for sharing files -->
+        <receiver
+            android:name=".location.BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.womensafety.provider"

@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths xmlns:android="http://schemas.android.com/apk/res/android">
-    <external-files-path 
-        name="sos_photos" 
-        path="SOSPhotos/" />
-    
-    <external-files-path 
-        name="sos_audio" 
-        path="SOSAudio/" />
-    
-    <external-files-path 
-        name="external_files" 
-        path="." />
+<paths>
+    <!-- SOS evidence (private app storage) -->
+    <files-path name="evidence" path="evidence/" />
+    <!-- Evidence saved by v5 of the app -->
+    <external-files-path name="legacy_evidence" path="." />
 </paths>

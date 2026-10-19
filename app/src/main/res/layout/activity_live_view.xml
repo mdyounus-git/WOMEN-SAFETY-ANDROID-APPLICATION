@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0E0A10">
+
+    <!-- ===== Live camera (full bleed) ===== -->
+    <FrameLayout
+        android:id="@+id/videoFrame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#000000"
+        app:layout_constraintHeight_percent="0.52"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.webrtc.SurfaceViewRenderer
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/snapshot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/live_snapshot_desc"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
+        <!-- Shown when SOS is off: camera/mic are never accessible then. -->
+        <LinearLayout
+            android:id="@+id/privacyPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#1A1320"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="40dp">
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_lock"
+                app:tint="#B9A9C2" />
+
+            <TextView
+                android:id="@+id/privacyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/live_privacy_title"
+                android:textAppearance="@style/TextAppearance.WS.HeadlineSmall"
+                android:textColor="#F3ECF5" />
+
+            <TextView
+                android:id="@+id/privacyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.WS.Body"
+                android:textColor="#B9A9C2"
+                tools:text="@string/live_privacy_text" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_video_scrim" />
+
+        <!-- Header over the video -->
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/back"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/action_back"
+                app:icon="@drawable/ic_back"
+                app:iconTint="#FFFFFF" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.WS.HeadlineSmall"
+                    android:textColor="#FFFFFF"
+                    tools:text="Asma" />
+
+                <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.WS.BodySmall"
+                    android:textColor="#E6DCEB"
+                    tools:text="Location shared · updated just now" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/statusPill"
+            style="@style/WS.Pill"
+            android:layout_gravity="bottom|start"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bg_pill"
+            android:backgroundTint="#CC1A1320"
+            android:drawableStart="@drawable/bg_dot"
+            android:drawableTint="@color/ws_sos"
+            android:textColor="#FFFFFF"
+            android:visibility="gone"
+            tools:text="LIVE"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/videoControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mute"
+                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:contentDescription="@string/live_mute"
+                app:backgroundTint="#CC1A1320"
+                app:icon="@drawable/ic_volume_up"
+                app:iconTint="#FFFFFF" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/switchCamera"
+                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/live_switch_camera"
+                app:backgroundTint="#CC1A1320"
+                app:icon="@drawable/ic_switch_camera"
+                app:iconTint="#FFFFFF" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Lets the panel overlap the bottom of the video by 24dp. -->
+    <Space
+        android:id="@+id/overlap"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/videoFrame"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- ===== Bottom panel: map + details + actions ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/panel"
+        style="@style/Widget.WS.Card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/ws_paper"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/overlap"
+        app:shapeAppearance="@style/Shape.WS.Sheet"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:id="@+id/panelContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/stateChip"
+                    style="@style/WS.Pill"
+                    android:background="@drawable/bg_pill"
+                    android:backgroundTint="@color/ws_safe_container"
+                    android:drawableStart="@drawable/bg_dot"
+                    android:drawableTint="@color/ws_safe"
+                    android:textColor="@color/ws_ink"
+                    tools:text="Safe" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/battery"
+                    style="@style/WS.Pill"
+                    android:background="@drawable/bg_pill"
+                    android:backgroundTint="@color/ws_surface_soft"
+                    android:drawableStart="@drawable/ic_battery"
+                    android:drawableTint="@color/ws_ink_muted"
+                    android:textColor="@color/ws_ink"
+                    android:visibility="gone"
+                    tools:text="64%"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textAppearance="@style/TextAppearance.WS.Title"
+                tools:text="Koramangala 5th Block, Bengaluru" />
+
+            <TextView
+                android:id="@+id/placeDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="@style/TextAppearance.WS.BodySmall"
+                tools:text="Accurate to 12 m · moving 3 km/h" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.WS.Card"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="14dp"
+                android:layout_weight="1">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/mapMissing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/ws_surface_soft"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:text="@string/map_key_missing"
+                    android:textAppearance="@style/TextAppearance.WS.Body"
+                    android:visibility="gone" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/call"
+                    style="@style/Widget.WS.Button.Tonal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/action_call"
+                    app:icon="@drawable/ic_phone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/directions"
+                    style="@style/Widget.WS.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/action_directions"
+                    app:icon="@drawable/ic_directions" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

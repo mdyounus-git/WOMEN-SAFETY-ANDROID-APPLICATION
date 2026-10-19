@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:id="@+id/column"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/ws_gutter"
+        android:paddingTop="24dp"
+        android:paddingBottom="@dimen/ws_nav_clearance">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/circle_eyebrow"
+            android:textAppearance="@style/TextAppearance.WS.Overline" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/circle_title"
+            android:textAppearance="@style/TextAppearance.WS.Headline" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/circle_body"
+            android:textAppearance="@style/TextAppearance.WS.Body" />
+
+        <!-- Shown until Firebase is configured -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/notConfigured"
+            style="@style/Widget.WS.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/ws_warn_container"
+            app:strokeWidth="0dp"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_info"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/ws_warn"
+                android:padding="16dp"
+                android:text="@string/circle_not_configured"
+                android:textAppearance="@style/TextAppearance.WS.Body"
+                android:textColor="@color/ws_ink" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== People who can see me ===== -->
+        <TextView
+            style="@style/WS.SectionLabel"
+            android:text="@string/circle_section_guardians" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.WS.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="8dp">
+
+                <LinearLayout
+                    android:id="@+id/guardiansList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/guardiansEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="18dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/circle_guardians_empty"
+                    android:textAppearance="@style/TextAppearance.WS.Body" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/addGuardian"
+                    style="@style/Widget.WS.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/circle_add_guardian"
+                    app:icon="@drawable/ic_qr" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Sharing switch -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.WS.Card.Soft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/circle_sharing_title"
+                        android:textAppearance="@style/TextAppearance.WS.Title" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/circle_sharing_desc"
+                        android:textAppearance="@style/TextAppearance.WS.BodySmall" />
+                </LinearLayout>
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/sharingSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== People I look after ===== -->
+        <TextView
+            style="@style/WS.SectionLabel"
+            android:text="@string/circle_section_wards" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.WS.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="8dp">
+
+                <LinearLayout
+                    android:id="@+id/wardsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/wardsEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="18dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/circle_wards_empty"
+                    android:textAppearance="@style/TextAppearance.WS.Body" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/scan"
+                        style="@style/Widget.WS.Button.Tonal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/circle_scan"
+                        app:icon="@drawable/ic_scan" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/enterCode"
+                        style="@style/Widget.WS.Button.Outlined"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/circle_enter_code" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- How it works -->
+        <TextView
+            style="@style/WS.SectionLabel"
+            android:text="@string/circle_section_how" />
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.WS.Card.Soft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6sp"
+                android:padding="18dp"
+                android:text="@string/circle_how_text"
+                android:textAppearance="@style/TextAppearance.WS.Body"
+                android:textColor="@color/ws_ink" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

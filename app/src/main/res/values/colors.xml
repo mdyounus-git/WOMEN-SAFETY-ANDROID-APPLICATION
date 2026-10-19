@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#E91E63</color>
-    <color name="primary_dark">#C2185B</color>
-    <color name="accent">#FF4081</color>
+    <!-- Paper & ink: warm off-white surfaces with deep plum ink. -->
+    <color name="ws_paper">#F7F2EC</color>
+    <color name="ws_surface">#FFFFFF</color>
+    <color name="ws_surface_soft">#F0E8E0</color>
+    <color name="ws_surface_sunken">#E9DFD5</color>
+    <color name="ws_outline">#E2D6CB</color>
+    <color name="ws_outline_strong">#CBBBAE</color>
+
+    <color name="ws_ink">#1F1524</color>
+    <color name="ws_ink_muted">#6E6274</color>
+    <color name="ws_ink_faint">#9C91A0</color>
+
+    <!-- Brand: plum -->
+    <color name="ws_plum">#5A2670</color>
+    <color name="ws_plum_deep">#3B1149</color>
+    <!-- Same in light and dark: QR codes must stay dark-on-white to scan reliably. -->
+    <color name="ws_plum_deep_fixed">#3B1149</color>
+    <color name="ws_on_plum">#FFFFFF</color>
+    <color name="ws_plum_container">#EBDCF1</color>
+    <color name="ws_on_plum_container">#2B0C37</color>
+
+    <!-- SOS: warm coral-red -->
+    <color name="ws_sos">#E2434B</color>
+    <color name="ws_sos_deep">#B3202A</color>
+    <color name="ws_on_sos">#FFFFFF</color>
+    <color name="ws_sos_container">#FBE1DF</color>
+    <color name="ws_on_sos_container">#5C0910</color>
+
+    <!-- Status -->
+    <color name="ws_safe">#2C8665</color>
+    <color name="ws_safe_container">#DAF0E5</color>
+    <color name="ws_warn">#C27C0A</color>
+    <color name="ws_warn_container">#FAEACB</color>
+
+    <!-- Crime-rate scale (map) -->
+    <color name="ws_risk_low">#2C8665</color>
+    <color name="ws_risk_moderate">#D9A21B</color>
+    <color name="ws_risk_high">#E06A2C</color>
+    <color name="ws_risk_very_high">#C42638</color>
+    <color name="ws_risk_unknown">#8C8190</color>
+
+    <color name="ws_scrim">#99140D18</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="grey">#757575</color>
-    <color name="text_secondary">#757575</color>
-    <color name="light_grey">#E0E0E0</color>
-    <color name="background">#F5F5F5</color>
-    <color name="error">#F44336</color>
-    <color name="success">#4CAF50</color>
 </resources>

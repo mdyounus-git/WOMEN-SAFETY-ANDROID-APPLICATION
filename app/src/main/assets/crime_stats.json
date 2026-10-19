@@ -1,0 +1,477 @@
+{
+ "_readme": "City-level crimes against women, from the National Crime Records Bureau (NCRB). Rates use different bases per source, so each city is compared with the average for its own source. To update: replace values from the latest NCRB 'Crime in India' report (ncrb.gov.in) and bump the year in 'sources'. Cities without 'rate' show on the map in grey.",
+ "sources": {
+  "ncrb2023_cities": {
+   "title": "NCRB Crime in India 2023, Table 3B.1",
+   "year": 2023,
+   "unit": "per lakh population",
+   "baseline": 111.4,
+   "baselineLabel": "the average of these 34 cities"
+  },
+  "ncrb2022_metro": {
+   "title": "NCRB Crime in India 2022 (19 metropolitan cities)",
+   "year": 2022,
+   "unit": "per lakh women",
+   "baseline": 66.4,
+   "baselineLabel": "the all-India rate"
+  },
+  "ncrb2023_metro": {
+   "title": "NCRB Crime in India 2023 (19 metropolitan cities)",
+   "year": 2023,
+   "unit": "per lakh women",
+   "baseline": 66.2,
+   "baselineLabel": "the all-India rate"
+  }
+ },
+ "cities": [
+  {
+   "name": "Agra",
+   "state": "Uttar Pradesh",
+   "lat": 27.1767,
+   "lng": 78.0081,
+   "rate": 128.1,
+   "cases": 1030,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Amritsar",
+   "state": "Punjab",
+   "lat": 31.634,
+   "lng": 74.8723,
+   "rate": 55.3,
+   "cases": 306,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Asansol",
+   "state": "West Bengal",
+   "lat": 23.6739,
+   "lng": 86.9524,
+   "rate": 116.8,
+   "cases": 695,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Aurangabad",
+   "state": "Maharashtra",
+   "lat": 19.8762,
+   "lng": 75.3433,
+   "rate": 171.6,
+   "cases": 977,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Bhopal",
+   "state": "Madhya Pradesh",
+   "lat": 23.2599,
+   "lng": 77.4126,
+   "rate": 210.0,
+   "cases": 1886,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Chandigarh",
+   "state": "Chandigarh",
+   "lat": 30.7333,
+   "lng": 76.7794,
+   "rate": 80.2,
+   "cases": 371,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Dhanbad",
+   "state": "Jharkhand",
+   "lat": 23.7957,
+   "lng": 86.4304,
+   "rate": 53.7,
+   "cases": 302,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Durg-Bhilainagar",
+   "state": "Chhattisgarh",
+   "lat": 21.1938,
+   "lng": 81.3509,
+   "rate": 97.2,
+   "cases": 504,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Faridabad",
+   "state": "Haryana",
+   "lat": 28.4089,
+   "lng": 77.3178,
+   "rate": 217.7,
+   "cases": 1424,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Gwalior",
+   "state": "Madhya Pradesh",
+   "lat": 26.2183,
+   "lng": 78.1828,
+   "rate": 225.8,
+   "cases": 1159,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Jabalpur",
+   "state": "Madhya Pradesh",
+   "lat": 23.1815,
+   "lng": 79.9864,
+   "rate": 133.8,
+   "cases": 809,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Jamshedpur",
+   "state": "Jharkhand",
+   "lat": 22.8046,
+   "lng": 86.2029,
+   "rate": 41.5,
+   "cases": 266,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Jodhpur",
+   "state": "Rajasthan",
+   "lat": 26.2389,
+   "lng": 73.0243,
+   "rate": 242.2,
+   "cases": 1304,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Kannur",
+   "state": "Kerala",
+   "lat": 11.8745,
+   "lng": 75.3704,
+   "rate": 50.3,
+   "cases": 445,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Kollam",
+   "state": "Kerala",
+   "lat": 8.8932,
+   "lng": 76.6141,
+   "rate": 121.9,
+   "cases": 707,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Kota",
+   "state": "Rajasthan",
+   "lat": 25.2138,
+   "lng": 75.8648,
+   "rate": 217.6,
+   "cases": 1026,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Ludhiana",
+   "state": "Punjab",
+   "lat": 30.901,
+   "lng": 75.8573,
+   "rate": 59.7,
+   "cases": 441,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Madurai",
+   "state": "Tamil Nadu",
+   "lat": 9.9252,
+   "lng": 78.1198,
+   "rate": 35.6,
+   "cases": 260,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Malappuram",
+   "state": "Kerala",
+   "lat": 11.051,
+   "lng": 76.0711,
+   "rate": 46.1,
+   "cases": 410,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Meerut",
+   "state": "Uttar Pradesh",
+   "lat": 28.9845,
+   "lng": 77.7064,
+   "rate": 87.9,
+   "cases": 589,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Nashik",
+   "state": "Maharashtra",
+   "lat": 19.9975,
+   "lng": 73.7898,
+   "rate": 95.1,
+   "cases": 702,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Prayagraj",
+   "state": "Uttar Pradesh",
+   "lat": 25.4358,
+   "lng": 81.8463,
+   "rate": 105.0,
+   "cases": 589,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Raipur",
+   "state": "Chhattisgarh",
+   "lat": 21.2514,
+   "lng": 81.6296,
+   "rate": 129.7,
+   "cases": 706,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Rajkot",
+   "state": "Gujarat",
+   "lat": 22.3039,
+   "lng": 70.8022,
+   "rate": 57.8,
+   "cases": 381,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Ranchi",
+   "state": "Jharkhand",
+   "lat": 23.3441,
+   "lng": 85.3096,
+   "rate": 67.4,
+   "cases": 364,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Srinagar",
+   "state": "Jammu & Kashmir",
+   "lat": 34.0837,
+   "lng": 74.7973,
+   "rate": 66.9,
+   "cases": 399,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Thiruvananthapuram",
+   "state": "Kerala",
+   "lat": 8.5241,
+   "lng": 76.9366,
+   "rate": 87.1,
+   "cases": 760,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Thrissur",
+   "state": "Kerala",
+   "lat": 10.5276,
+   "lng": 76.2144,
+   "rate": 87.9,
+   "cases": 860,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Tiruchirappalli",
+   "state": "Tamil Nadu",
+   "lat": 10.7905,
+   "lng": 78.7047,
+   "rate": 23.1,
+   "cases": 119,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Vadodara",
+   "state": "Gujarat",
+   "lat": 22.3072,
+   "lng": 73.1812,
+   "rate": 34.4,
+   "cases": 300,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Varanasi",
+   "state": "Uttar Pradesh",
+   "lat": 25.3176,
+   "lng": 82.9739,
+   "rate": 100.9,
+   "cases": 680,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Vasai-Virar",
+   "state": "Maharashtra",
+   "lat": 19.3919,
+   "lng": 72.8397,
+   "rate": 208.3,
+   "cases": 1191,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Vijayawada",
+   "state": "Andhra Pradesh",
+   "lat": 16.5062,
+   "lng": 80.648,
+   "rate": 300.0,
+   "cases": 2221,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Visakhapatnam",
+   "state": "Andhra Pradesh",
+   "lat": 17.6868,
+   "lng": 83.2185,
+   "rate": 116.6,
+   "cases": 997,
+   "source": "ncrb2023_cities"
+  },
+  {
+   "name": "Delhi",
+   "state": "Delhi",
+   "lat": 28.6139,
+   "lng": 77.209,
+   "source": "ncrb2022_metro",
+   "rate": 186.9,
+   "cases": 14158
+  },
+  {
+   "name": "Jaipur",
+   "state": "Rajasthan",
+   "lat": 26.9124,
+   "lng": 75.7873,
+   "source": "ncrb2022_metro",
+   "rate": 239.3
+  },
+  {
+   "name": "Lucknow",
+   "state": "Uttar Pradesh",
+   "lat": 26.8467,
+   "lng": 80.9462,
+   "source": "ncrb2022_metro",
+   "rate": 161.4
+  },
+  {
+   "name": "Kolkata",
+   "state": "West Bengal",
+   "lat": 22.5726,
+   "lng": 88.3639,
+   "source": "ncrb2022_metro",
+   "rate": 27.8
+  },
+  {
+   "name": "Chennai",
+   "state": "Tamil Nadu",
+   "lat": 13.0827,
+   "lng": 80.2707,
+   "source": "ncrb2022_metro",
+   "rate": 17.1
+  },
+  {
+   "name": "Coimbatore",
+   "state": "Tamil Nadu",
+   "lat": 11.0168,
+   "lng": 76.9558,
+   "source": "ncrb2022_metro",
+   "rate": 12.9
+  },
+  {
+   "name": "Patna",
+   "state": "Bihar",
+   "lat": 25.5941,
+   "lng": 85.1376,
+   "source": "ncrb2023_metro",
+   "rate": 121.2
+  },
+  {
+   "name": "Mumbai",
+   "state": "Maharashtra",
+   "lat": 19.076,
+   "lng": 72.8777,
+   "source": "ncrb2022_metro",
+   "cases": 6176
+  },
+  {
+   "name": "Bengaluru",
+   "state": "Karnataka",
+   "lat": 12.9716,
+   "lng": 77.5946,
+   "source": "ncrb2022_metro",
+   "cases": 3924
+  },
+  {
+   "name": "Hyderabad",
+   "state": "Telangana",
+   "lat": 17.385,
+   "lng": 78.4867,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Pune",
+   "state": "Maharashtra",
+   "lat": 18.5204,
+   "lng": 73.8567,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Ahmedabad",
+   "state": "Gujarat",
+   "lat": 23.0225,
+   "lng": 72.5714,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Surat",
+   "state": "Gujarat",
+   "lat": 21.1702,
+   "lng": 72.8311,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Kanpur",
+   "state": "Uttar Pradesh",
+   "lat": 26.4499,
+   "lng": 80.3319,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Nagpur",
+   "state": "Maharashtra",
+   "lat": 21.1458,
+   "lng": 79.0882,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Indore",
+   "state": "Madhya Pradesh",
+   "lat": 22.7196,
+   "lng": 75.8577,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Ghaziabad",
+   "state": "Uttar Pradesh",
+   "lat": 28.6692,
+   "lng": 77.4538,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Kochi",
+   "state": "Kerala",
+   "lat": 9.9312,
+   "lng": 76.2673,
+   "source": "ncrb2022_metro"
+  },
+  {
+   "name": "Kozhikode",
+   "state": "Kerala",
+   "lat": 11.2588,
+   "lng": 75.7804,
+   "source": "ncrb2022_metro"
+  }
+ ]
+}

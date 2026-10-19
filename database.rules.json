@@ -1,0 +1,78 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('links').child($uid).child('guardians').child(auth.uid).exists() || root.child('links').child(auth.uid).child('guardians').child($uid).exists())",
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.child('name').isString() && newData.child('name').val().length <= 80"
+      }
+    },
+
+    "invites": {
+      "$code": {
+        ".read": "auth != null",
+        ".write": "auth != null && ((!data.exists() && newData.child('wardUid').val() === auth.uid) || (data.exists() && data.child('wardUid').val() === auth.uid))",
+        ".validate": "!newData.exists() || (newData.hasChildren(['wardUid', 'wardName', 'expiresAt']) && newData.child('expiresAt').isNumber() && newData.child('expiresAt').val() <= now + 900000)"
+      }
+    },
+
+    "links": {
+      "$wardUid": {
+        ".read": "auth != null && auth.uid === $wardUid",
+        "guardians": {
+          "$guardianUid": {
+            ".read": "auth != null && auth.uid === $guardianUid",
+            ".write": "auth != null && ((auth.uid === $wardUid && !newData.exists()) || (auth.uid === $guardianUid && !newData.exists()) || (auth.uid === $guardianUid && newData.child('code').isString() && root.child('invites').child(newData.child('code').val()).child('wardUid').val() === $wardUid && root.child('invites').child(newData.child('code').val()).child('expiresAt').val() > now))",
+            ".validate": "!newData.exists() || newData.hasChildren(['name', 'code', 'since'])"
+          }
+        }
+      }
+    },
+
+    "watching": {
+      "$guardianUid": {
+        ".read": "auth != null && auth.uid === $guardianUid",
+        "$wardUid": {
+          ".write": "auth != null && auth.uid === $guardianUid && (!newData.exists() || root.child('links').child($wardUid).child('guardians').child(auth.uid).exists())"
+        }
+      }
+    },
+
+    "live": {
+      "$wardUid": {
+        ".read": "auth != null && (auth.uid === $wardUid || root.child('links').child($wardUid).child('guardians').child(auth.uid).exists())",
+        ".write": "auth != null && auth.uid === $wardUid"
+      }
+    },
+
+    "calls": {
+      "$wardUid": {
+        ".read": "auth != null && auth.uid === $wardUid",
+        ".write": "auth != null && auth.uid === $wardUid",
+        "$guardianUid": {
+          ".read": "auth != null && auth.uid === $guardianUid && root.child('links').child($wardUid).child('guardians').child(auth.uid).exists()",
+          ".write": "auth != null && auth.uid === $guardianUid && root.child('links').child($wardUid).child('guardians').child(auth.uid).exists()"
+        }
+      }
+    },
+
+    "evidence": {
+      "$wardUid": {
+        ".read": "auth != null && (auth.uid === $wardUid || root.child('links').child($wardUid).child('guardians').child(auth.uid).exists())",
+        ".write": "auth != null && auth.uid === $wardUid",
+        "$sessionId": {
+          "photos": {
+            "$id": {
+              ".validate": "newData.hasChildren(['ts', 'jpg']) && newData.child('jpg').isString() && newData.child('jpg').val().length < 400000"
+            }
+          },
+          "audio": {
+            "$id": {
+              ".validate": "newData.hasChildren(['ts', 'aac']) && newData.child('aac').isString() && newData.child('aac').val().length < 400000"
+            }
+          }
+        }
+      }
+    }
+  }
+}

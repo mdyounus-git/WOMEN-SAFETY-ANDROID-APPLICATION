@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.WS.Card.Plum"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.WS.Overline"
+            android:textColor="@color/ws_on_plum_container"
+            tools:text="The Hindu" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.WS.HeadlineSmall"
+            android:textColor="@color/ws_on_plum_container"
+            tools:text="City police launch night patrol app for women commuters" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:drawableEnd="@drawable/ic_open"
+            android:drawablePadding="6dp"
+            android:drawableTint="@color/ws_on_plum_container"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.WS.BodySmall"
+            android:textColor="@color/ws_on_plum_container"
+            tools:text="2 hr ago" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

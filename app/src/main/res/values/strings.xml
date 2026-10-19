@@ -1,23 +1,348 @@
 <resources>
     <string name="app_name">Women Safety</string>
-    <string name="login">Login</string>
-    <string name="register">Register</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="full_name">Full Name</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="dont_have_account">Don\'t have an account?</string>
-    <string name="already_have_account">Already have an account?</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="sign_in">Sign In</string>
-    <string name="emergency_contacts">Emergency Contacts</string>
-    <string name="add_contact">Add Contact</string>
-    <string name="sos_active">SOS Active</string>
-    <string name="stop_sos">Stop SOS</string>
-    <string name="profile">Profile</string>
-    <string name="logout">Logout</string>
-    
-    <!-- Accessibility Service Description -->
-    <string name="accessibility_service_description">This service allows triggering emergency SOS by holding the Volume Up button for 6 seconds, even when the phone screen is off or locked. This helps you activate emergency alerts discreetly in dangerous situations.\n\nThe service:\n• Detects Volume Up button press\n• Works when screen is OFF/LOCKED\n• Sends location, photos, and audio to emergency contacts\n• Provides vibration feedback\n\nNo data is collected or shared. The service only activates when you hold Volume Up for 6 seconds.</string>
+
+    <!-- Common actions -->
+    <string name="action_back">Back</string>
+    <string name="action_call">Call</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_directions">Directions</string>
+    <string name="action_not_now">Not now</string>
+    <string name="action_ok">Got it</string>
+    <string name="action_profile">Profile and settings</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_retry">Try again</string>
+    <string name="action_save">Save</string>
+
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_offline">Couldn\'t reach the server. Check your internet connection.</string>
+    <string name="error_name">Please enter a name</string>
+    <string name="error_phone">Enter a valid 10-digit mobile number</string>
+
+    <string name="time_just_now">just now</string>
+    <string name="time_unknown">not yet</string>
+    <string name="percent">%1$d%%</string>
+    <string name="someone_in_circle">Someone in your circle</string>
+    <string name="badge_sos">SOS</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Safety</string>
+    <string name="nav_map">Crime map</string>
+    <string name="nav_news">News</string>
+    <string name="nav_circle">Circle</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_eyebrow">Welcome</string>
+    <string name="onboarding_title">Your safety,\nalways within reach.</string>
+    <string name="onboarding_body">Share your live location with the people you trust, and call for help in seconds — even with your phone in your pocket.</string>
+    <string name="onboarding_point_sos">Hold the SOS button, or Volume Up for 6 seconds</string>
+    <string name="onboarding_point_circle">Family see your live location; camera and mic only during SOS</string>
+    <string name="onboarding_point_privacy">No account or password. Free to use.</string>
+    <string name="onboarding_continue">Continue</string>
+    <string name="onboarding_footnote">Your name and number are shown only to people you add to your circle.</string>
+    <string name="field_name">Your name</string>
+    <string name="field_phone">Mobile number</string>
+    <string name="field_phone_helper">Family can call you from the live view</string>
+
+    <!-- Home -->
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="greeting_night">Stay safe tonight</string>
+    <string name="greeting_with_name">%1$s,\n%2$s</string>
+    <string name="pill_sharing_not_setup">Live sharing not set up</string>
+    <string name="pill_sharing_nobody">No one in your circle yet</string>
+    <string name="pill_sharing_on_generic">Live location shared</string>
+    <string name="pill_sharing_paused">Location sharing paused</string>
+    <string name="pill_volume_on">Volume SOS on</string>
+    <string name="pill_volume_off">Volume SOS off</string>
+    <string name="sos_label">SOS</string>
+    <string name="sos_label_active">STOP</string>
+    <string name="sos_sub_hold">Press and hold</string>
+    <string name="sos_sub_active">Hold to stop</string>
+    <string name="sos_hint">Hold for 2 seconds to alert your circle.\nOr hold Volume Up for 6 seconds, from anywhere.</string>
+    <string name="sos_hint_active">SOS is on. Hold the button for 2 seconds when you\'re safe.</string>
+    <string name="sos_hint_sending">Keep holding…</string>
+    <string name="sos_hint_stopping">Keep holding to stop SOS…</string>
+    <string name="sos_button_desc">SOS. Press and hold for 2 seconds to send an alert.</string>
+    <string name="sos_button_desc_active">SOS is active. Press and hold for 2 seconds to stop.</string>
+    <string name="sos_live_title">SOS is active</string>
+    <string name="sos_live_note_media">Live location, camera and microphone are being shared with your circle and saved as evidence.</string>
+    <string name="sos_live_note_no_media">Sharing live location. Allow camera and microphone in Safety setup to also stream and record.</string>
+    <string name="stat_watching">watching</string>
+    <string name="stat_photos">photos</string>
+    <string name="stat_clips">clips</string>
+    <string name="stat_sms">SMS sent</string>
+    <string name="sos_confirm_title">Send SOS now?</string>
+    <string name="sos_confirm_text">Your circle will be alerted with your live location, camera and microphone.</string>
+    <string name="sos_confirm_send">Send SOS</string>
+    <string name="sos_confirm_stop_title">Stop SOS?</string>
+    <string name="sos_confirm_stop_text">Your circle will see that you have stopped the alert.</string>
+    <string name="sos_confirm_stop">I\'m safe — stop</string>
+    <string name="setup_card_title">Finish safety setup</string>
+    <string name="setup_card_text">%1$d of %2$d done · next: %3$s</string>
+    <string name="home_section_tools">Your safety net</string>
+    <string name="tile_circle">Your circle</string>
+    <string name="tile_circle_none">Add family with a QR code</string>
+    <string name="tile_circle_not_setup">Needs one-time setup</string>
+    <string name="tile_map">Crime map</string>
+    <string name="tile_map_sub">Check an area before you go</string>
+    <string name="tile_contacts">SMS contacts</string>
+    <string name="tile_contacts_none">Text alerts without internet</string>
+    <string name="tile_evidence">Evidence</string>
+    <string name="tile_evidence_none">Nothing recorded yet</string>
+    <string name="home_tip_label">Safety tip</string>
+
+    <!-- SOS service & SMS -->
+    <string name="sos_notif_title">SOS is on</string>
+    <string name="sos_notif_text">Sharing live location. Your circle is being alerted. Tap to open.</string>
+    <string name="sms_someone">Someone</string>
+    <string name="sms_location_unknown">location not available yet</string>
+    <string name="sms_first">SOS: %1$s needs help. Live location: %2$s (as of %3$s). Sent by the Women Safety app.</string>
+    <string name="sms_update">SOS update from %1$s. Location now: %2$s (as of %3$s).</string>
+
+    <!-- Notifications -->
+    <string name="channel_sharing">Location sharing</string>
+    <string name="channel_sharing_desc">Shown while your live location is shared or while you watch over someone.</string>
+    <string name="channel_sos">Your SOS</string>
+    <string name="channel_sos_desc">Shown while your SOS is active.</string>
+    <string name="channel_alerts">SOS alarms from your circle</string>
+    <string name="channel_alerts_desc">Rings loudly when someone you look after starts an SOS.</string>
+    <string name="channel_circle">Circle updates</string>
+    <string name="channel_circle_desc">For example, when someone joins your circle.</string>
+    <string name="sharing_notif_title">Sharing your live location</string>
+    <string name="sharing_notif_text">Visible to %1$s. Camera and mic stay off unless you start SOS.</string>
+    <string name="sharing_notif_your_circle">your circle</string>
+    <string name="notif_new_guardian_title">%1$s joined your circle</string>
+    <string name="notif_new_guardian_text">They can now see your live location. Not you? Remove them in Circle.</string>
+    <string name="watch_notif_title">Watching over your circle</string>
+    <string name="watch_notif_text_generic">You\'ll get an alarm if someone starts an SOS.</string>
+    <string name="alert_title">%1$s needs help</string>
+    <string name="alert_text">SOS started. Tap to see her live location, camera and microphone.</string>
+    <string name="alert_action_view">Open live view</string>
+
+    <!-- Circle -->
+    <string name="circle_eyebrow">Your people</string>
+    <string name="circle_title">Circle</string>
+    <string name="circle_body">People in your circle can always see your live location. Your camera and microphone are shared with them only while your SOS is on.</string>
+    <string name="circle_not_configured">Live sharing needs a one-time Firebase setup by the app developer (free). See README → "Set up Firebase". SOS, SMS alerts, news and the map work without it.</string>
+    <string name="circle_section_guardians">Who can see you</string>
+    <string name="circle_guardians_empty">No one yet. Show your QR code to your mom, brother or a friend.</string>
+    <string name="circle_add_guardian">Add someone with QR</string>
+    <string name="circle_guardian_sub">Can see your live location</string>
+    <string name="circle_remove_desc">Remove %1$s</string>
+    <string name="circle_remove_title">Remove %1$s?</string>
+    <string name="circle_remove_text">%1$s will immediately stop seeing your location and won\'t be alerted if you start an SOS.</string>
+    <string name="circle_sharing_title">Share live location</string>
+    <string name="circle_sharing_desc">Pause anytime. SOS always shares location.</string>
+    <string name="circle_section_wards">People you look after</string>
+    <string name="circle_wards_empty">Scan someone\'s QR code to watch over them and get their SOS alarms.</string>
+    <string name="circle_scan">Scan QR</string>
+    <string name="circle_enter_code">Code</string>
+    <string name="circle_enter_code_title">Enter invite code</string>
+    <string name="circle_code_hint">10-letter code, e.g. ABCD EFGH JK</string>
+    <string name="circle_scan_prompt">Point at the QR code on her phone</string>
+    <string name="circle_open_desc">Open live view of %1$s</string>
+    <string name="circle_ward_loading">Checking…</string>
+    <string name="circle_ward_sos">SOS active — tap to view</string>
+    <string name="circle_ward_no_location">Location not shared yet</string>
+    <string name="circle_ward_updated">Location updated %1$s</string>
+    <string name="circle_ward_removed">She removed you from her circle</string>
+    <string name="circle_leave_title">Stop watching over %1$s?</string>
+    <string name="circle_leave_text">You will no longer see %1$s\'s location or get her SOS alarms.</string>
+    <string name="circle_section_how">How it works</string>
+    <string name="circle_how_text">1. On her phone: Circle → Add someone with QR.\n2. On your phone: Circle → Scan QR.\n3. Done. You\'ll see her live location and get a loud alarm if she starts an SOS — with her live camera and microphone until she stops it.</string>
+
+    <!-- Joining -->
+    <string name="join_invalid">That doesn\'t look like a Women Safety code.</string>
+    <string name="join_expired">This code has expired. Ask her to show a new one.</string>
+    <string name="join_not_found">Code not found. Ask her to show a new one.</string>
+    <string name="join_self">That\'s your own code — scan it from another phone.</string>
+    <string name="join_title">Join %1$s\'s circle?</string>
+    <string name="join_text">You\'ll see %1$s\'s live location. If she starts an SOS, your phone will ring an alarm and you\'ll see her camera and hear her microphone until she stops it.</string>
+    <string name="join_confirm">Join</string>
+    <string name="join_done">You\'re now in %1$s\'s circle</string>
+    <string name="join_failed">Couldn\'t join. The code may have expired.</string>
+
+    <!-- Invite -->
+    <string name="invite_eyebrow">Add to your circle</string>
+    <string name="invite_title">Show this to your family</string>
+    <string name="invite_body">On their phone: open Women Safety → Circle → Scan QR.</string>
+    <string name="invite_qr_desc">QR code to join your circle</string>
+    <string name="invite_expires_in">Expires in %1$s</string>
+    <string name="invite_expired">Code expired</string>
+    <string name="invite_failed">Couldn\'t create a code. Check your connection.</string>
+    <string name="invite_new_code">New code</string>
+    <string name="invite_joined">%1$s joined your circle</string>
+    <string name="invite_safety_note">Only show this to people you trust. Anyone who scans it can see your live location. The code stops working when you leave this screen.</string>
+    <string name="invite_share_code">Send code</string>
+    <string name="invite_share_text">Join my safety circle on the Women Safety app. Open it → Circle → Code, and enter: %1$s (valid for 10 minutes). Or tap: %2$s</string>
+
+    <!-- Live view -->
+    <string name="live_snapshot_desc">Latest photo from her phone</string>
+    <string name="live_privacy_title">Camera and mic are off</string>
+    <string name="live_privacy_text">They turn on only when %1$s starts an SOS. Until then you see her live location.</string>
+    <string name="live_mute">Mute her microphone</string>
+    <string name="live_switch_camera">Switch her camera</string>
+    <string name="live_state_safe">No SOS</string>
+    <string name="live_state_sos">SOS active</string>
+    <string name="live_subtitle_safe">Location shared · updated %1$s</string>
+    <string name="live_subtitle_sos">SOS active · location updated %1$s</string>
+    <string name="live_pill_connecting">Connecting to camera…</string>
+    <string name="live_pill_live">LIVE</string>
+    <string name="live_pill_reconnecting">Reconnecting…</string>
+    <string name="live_pill_failed">Live video unavailable · tap to retry</string>
+    <string name="live_accuracy">Accurate to %1$d m</string>
+    <string name="live_speed">moving %1$d km/h</string>
+    <string name="live_no_location">Her location isn\'t available yet</string>
+    <string name="live_access_lost">You\'re no longer in %1$s\'s circle</string>
+
+    <!-- Map -->
+    <string name="map_title">Crime map</string>
+    <string name="map_subtitle">Crimes against women by city · official NCRB data</string>
+    <string name="map_my_location">Show my location</string>
+    <string name="map_key_missing">Add your free Google Maps API key to local.properties as MAPS_API_KEY to show the map (see README).</string>
+    <string name="map_city_meta">%1$s · NCRB %2$d</string>
+    <string name="map_rate_unit">crimes against women\n%1$s</string>
+    <string name="map_rate_missing">No official figure bundled for this city yet</string>
+    <string name="map_comparison">%1$s× %2$s</string>
+    <string name="map_cases">%1$s cases</string>
+    <string name="map_cases_year">%1$s cases reported in %2$d</string>
+    <string name="map_source">Source: %1$s</string>
+    <string name="map_disclaimer">Reported cases depend on how willing people are to report, not just on how much crime happens. Use this as one signal, not a verdict on an area.</string>
+    <string name="map_news_label">Recent news · %1$s</string>
+    <string name="map_news_loading">Loading local news…</string>
+    <string name="map_news_none">No recent safety news for this area.</string>
+    <string name="map_not_listed">Not in the NCRB city tables · showing local news</string>
+    <string name="map_pick_city">Pick a city</string>
+    <string name="map_pick_city_hint">Tap a dot on the map, or allow location</string>
+    <string name="level_low">Low</string>
+    <string name="level_moderate">Average</string>
+    <string name="level_high">High</string>
+    <string name="level_very_high">Very high</string>
+    <string name="level_unknown">No data</string>
+
+    <!-- News -->
+    <string name="news_title">Today\'s news</string>
+    <string name="news_chip_top">Top stories</string>
+    <string name="news_chip_safety">Women\'s safety</string>
+    <string name="news_chip_local">Near you</string>
+    <string name="news_chip_crime">Crime alerts</string>
+    <string name="news_empty">No stories right now. Pull down to refresh.</string>
+    <string name="news_error">Couldn\'t load news. Check your connection and try again.</string>
+
+    <!-- Setup -->
+    <string name="setup_eyebrow">Safety setup</string>
+    <string name="setup_title">A few permissions, each for a reason</string>
+    <string name="setup_body">Nothing is shared until you add people to your circle. Camera and microphone are used only during an SOS.</string>
+    <string name="setup_progress">%1$d of %2$d ready</string>
+    <string name="setup_allow">Allow</string>
+    <string name="setup_open_settings">Open settings</string>
+    <string name="setup_app_info">App info</string>
+    <string name="setup_state_done">Done</string>
+    <string name="setup_done">Done</string>
+    <string name="setup_later">Finish later</string>
+    <string name="setup_location">Precise location</string>
+    <string name="setup_location_desc">So your circle and SOS alerts know exactly where you are.</string>
+    <string name="setup_bg_location">Location all the time</string>
+    <string name="setup_bg_location_desc">Keeps sharing working after a restart, without opening the app.</string>
+    <string name="setup_bg_location_dialog">On the next screen choose \"Allow all the time\". Your location is only ever shared with people in your circle, and you can pause sharing anytime.</string>
+    <string name="setup_notifications">Notifications</string>
+    <string name="setup_notifications_desc">For SOS alarms from family, and to show when sharing is on.</string>
+    <string name="setup_camera_mic">Camera and microphone</string>
+    <string name="setup_camera_mic_desc">Used only during SOS: live video and audio for your circle, saved as evidence.</string>
+    <string name="setup_volume">Volume-button SOS</string>
+    <string name="setup_volume_desc">Hold Volume Up for 6 seconds to trigger SOS, even from the lock screen.</string>
+    <string name="setup_volume_dialog">Android calls this an accessibility service. It only listens for the Volume Up key and never reads your screen.\n\nIn Settings: Accessibility → Installed apps (or Downloaded apps) → Women Safety → turn it on.</string>
+    <string name="setup_volume_restricted">If the switch is greyed out (\"Restricted setting\"): open App info → ⋮ menu → \"Allow restricted settings\", then try again.</string>
+    <string name="setup_sms">Text messages</string>
+    <string name="setup_sms_desc">Texts your SMS contacts during SOS — works without internet.</string>
+    <string name="setup_full_screen">Full-screen alarms</string>
+    <string name="setup_full_screen_desc">Lets an SOS alarm from your circle wake your screen.</string>
+    <string name="setup_battery">Run in background</string>
+    <string name="setup_battery_desc">Stops the phone from pausing sharing and SOS alarms to save battery.</string>
+
+    <!-- Profile -->
+    <string name="profile_edit">Edit profile</string>
+    <string name="profile_section_contacts">SMS emergency contacts</string>
+    <string name="profile_contacts_desc">Texted with your location during SOS. Works without internet, and they don\'t need the app.</string>
+    <string name="profile_contacts_empty">No contacts yet.</string>
+    <string name="profile_add_contact">Add contact</string>
+    <string name="profile_remove_contact">Remove %1$s?</string>
+    <string name="profile_section_safety">Safety</string>
+    <string name="profile_setup">Safety setup</string>
+    <string name="profile_evidence">Evidence vault</string>
+    <string name="profile_volume_help">How volume SOS works</string>
+    <string name="profile_volume_help_text">Hold Volume Up for 6 seconds. After 2 seconds you\'ll feel light ticks; three strong buzzes mean SOS has started.\n\nIt works inside other apps and on the lock screen. When the screen is fully off, some phones don\'t pass the volume key to apps — wake the screen first (press power) if nothing happens.</string>
+    <string name="profile_section_privacy">Privacy</string>
+    <string name="profile_privacy_text">• Your live location is visible only to people you add with your QR code, and you\'re notified whenever someone joins.\n• Camera and microphone are used only while your SOS is on.\n• Evidence is kept on your phone, and copied to your private cloud space so it isn\'t lost if the phone is taken.\n• No passwords, no ads, nothing sold.</string>
+    <string name="profile_reset">Reset app</string>
+    <string name="profile_reset_title">Reset the app?</string>
+    <string name="profile_reset_text">This removes your profile and contacts from this phone and disconnects you from your circle. Saved evidence stays in the Evidence vault.</string>
+    <string name="profile_reset_confirm">Reset</string>
+    <string name="profile_version">Version %1$s</string>
+
+    <!-- Evidence -->
+    <string name="evidence_title">Evidence vault</string>
+    <string name="evidence_body">Photos and audio recorded during each SOS. Kept privately on this phone.</string>
+    <string name="evidence_empty">Nothing here yet. If you ever start an SOS, photos and audio will be saved here automatically.</string>
+    <string name="evidence_counts">%1$s · %2$s</string>
+    <string name="evidence_audio_label">Audio · %1$s</string>
+    <string name="evidence_photo_desc">SOS photo</string>
+    <string name="evidence_play">Play audio</string>
+    <string name="evidence_play_failed">Couldn\'t play this clip</string>
+    <string name="evidence_share">Share</string>
+    <string name="evidence_delete">Delete</string>
+    <string name="evidence_delete_title">Delete this recording?</string>
+    <string name="evidence_delete_text">The photos and audio will be removed from this phone. Copies already sent to the cloud are kept.</string>
+    <string name="evidence_no_viewer">No app found to open this file</string>
+
+    <!-- Accessibility service -->
+    <string name="accessibility_service_label">Women Safety · Volume SOS</string>
+    <string name="accessibility_service_summary">Hold Volume Up for 6 seconds to send SOS</string>
+    <string name="accessibility_service_description">Lets you trigger an emergency SOS by holding the Volume Up button for 6 seconds — inside any app and on the lock screen.\n\nThis service only listens for the Volume Up key. It does not read your screen, your messages or anything you type, and the volume button keeps working normally.</string>
+
+    <plurals name="pill_sharing_on">
+        <item quantity="one">Live location · %d person</item>
+        <item quantity="other">Live location · %d people</item>
+    </plurals>
+    <plurals name="tile_circle_count">
+        <item quantity="one">%d person can see you</item>
+        <item quantity="other">%d people can see you</item>
+    </plurals>
+    <plurals name="tile_contacts_count">
+        <item quantity="one">%d contact</item>
+        <item quantity="other">%d contacts</item>
+    </plurals>
+    <plurals name="tile_evidence_count">
+        <item quantity="one">%d recording</item>
+        <item quantity="other">%d recordings</item>
+    </plurals>
+    <plurals name="sos_notif_watching">
+        <item quantity="one">%d person is watching your live camera.</item>
+        <item quantity="other">%d people are watching your live camera.</item>
+    </plurals>
+    <plurals name="watch_notif_text">
+        <item quantity="one">You\'ll get an alarm if %d person you look after starts an SOS.</item>
+        <item quantity="other">You\'ll get an alarm if any of the %d people you look after starts an SOS.</item>
+    </plurals>
+    <plurals name="photos">
+        <item quantity="one">%d photo</item>
+        <item quantity="other">%d photos</item>
+    </plurals>
+    <plurals name="clips">
+        <item quantity="one">%d audio clip</item>
+        <item quantity="other">%d audio clips</item>
+    </plurals>
+
+    <string-array name="safety_tips">
+        <item>Before a cab ride, share the vehicle number with your circle.</item>
+        <item>Practise the volume SOS once today so your hands remember it.</item>
+        <item>112 is India\'s single emergency number. 1091 is the women\'s helpline.</item>
+        <item>In an unfamiliar area, walk where there are shops and lights — even if it\'s longer.</item>
+        <item>Keep your phone above 20% battery when travelling at night.</item>
+        <item>Agree on a code word with family that means \"call me now\".</item>
+        <item>Trust your instincts. If a place feels wrong, leave and tell someone.</item>
+    </string-array>
 </resources>

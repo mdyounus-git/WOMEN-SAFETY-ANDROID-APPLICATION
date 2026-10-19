@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Warm paper colour with a fine tiled grain for a tactile, printed feel. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/ws_paper" />
+    <item>
+        <bitmap
+            android:src="@drawable/grain"
+            android:tileMode="repeat" />
+    </item>
+</layer-list>

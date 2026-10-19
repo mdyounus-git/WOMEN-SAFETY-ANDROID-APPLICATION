@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ws_gutter">20dp</dimen>
+    <dimen name="ws_gap">12dp</dimen>
+    <dimen name="ws_gap_large">24dp</dimen>
+    <dimen name="ws_radius_card">24dp</dimen>
+    <dimen name="ws_radius_small">14dp</dimen>
+    <dimen name="ws_nav_clearance">104dp</dimen>
+    <dimen name="ws_sos_size">232dp</dimen>
+</resources>

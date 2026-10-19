@@ -1,22 +1,110 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.WomenSafety" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:statusBarColor">@color/primary</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+    <style name="Base.Theme.WomenSafety" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ws_plum</item>
+        <item name="colorOnPrimary">@color/ws_on_plum</item>
+        <item name="colorPrimaryContainer">@color/ws_plum_container</item>
+        <item name="colorOnPrimaryContainer">@color/ws_on_plum_container</item>
+        <item name="colorSecondary">@color/ws_plum</item>
+        <item name="colorOnSecondary">@color/ws_on_plum</item>
+        <item name="colorSecondaryContainer">@color/ws_plum_container</item>
+        <item name="colorOnSecondaryContainer">@color/ws_on_plum_container</item>
+        <item name="colorTertiary">@color/ws_sos</item>
+        <item name="colorOnTertiary">@color/ws_on_sos</item>
+        <item name="colorError">@color/ws_sos</item>
+        <item name="colorOnError">@color/ws_on_sos</item>
+        <item name="colorErrorContainer">@color/ws_sos_container</item>
+        <item name="colorOnErrorContainer">@color/ws_on_sos_container</item>
+
+        <item name="android:colorBackground">@color/ws_paper</item>
+        <item name="colorOnBackground">@color/ws_ink</item>
+        <item name="colorSurface">@color/ws_surface</item>
+        <item name="colorOnSurface">@color/ws_ink</item>
+        <item name="colorSurfaceVariant">@color/ws_surface_soft</item>
+        <item name="colorOnSurfaceVariant">@color/ws_ink_muted</item>
+        <item name="colorSurfaceContainerLowest">@color/ws_surface</item>
+        <item name="colorSurfaceContainerLow">@color/ws_surface</item>
+        <item name="colorSurfaceContainer">@color/ws_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/ws_surface_soft</item>
+        <item name="colorSurfaceContainerHighest">@color/ws_surface_soft</item>
+        <item name="colorOutline">@color/ws_outline_strong</item>
+        <item name="colorOutlineVariant">@color/ws_outline</item>
+
+        <item name="android:windowBackground">@drawable/bg_paper</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <item name="fontFamily">@font/manrope</item>
+        <item name="android:fontFamily">@font/manrope</item>
+
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.WS.Display</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.WS.Headline</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.WS.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.WS.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.WS.Title</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.WS.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.WS.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.WS.Body</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.WS.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.WS.Label</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.WS.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.WS.Overline</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/Shape.WS.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/Shape.WS.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/Shape.WS.Large</item>
+
+        <item name="materialCardViewStyle">@style/Widget.WS.Card</item>
+        <item name="materialButtonStyle">@style/Widget.WS.Button</item>
+        <item name="chipStyle">@style/Widget.WS.Chip</item>
+        <item name="textInputStyle">@style/Widget.WS.TextInput</item>
+        <item name="bottomNavigationStyle">@style/Widget.WS.BottomNav</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.WS.Dialog</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.WS.BottomSheet</item>
     </style>
 
-    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/primary</item>
-        <item name="hintTextColor">@color/primary</item>
+    <style name="Theme.WomenSafety" parent="Base.Theme.WomenSafety">
+        <item name="android:windowLightStatusBar">@bool/ws_light_bars</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">@bool/ws_light_bars</item>
     </style>
 
-    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/primary</item>
-        <item name="cornerRadius">8dp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:textAllCaps">false</item>
+    <!-- Launcher: shows the branded paper background instantly instead of a fake splash delay. -->
+    <style name="Theme.WomenSafety.Launch" parent="Theme.WomenSafety">
+        <item name="android:windowBackground">@drawable/bg_launch</item>
+    </style>
+
+    <!-- Invisible trampoline that can start the SOS service from the lock screen. -->
+    <style name="Theme.WomenSafety.Transparent" parent="Theme.WomenSafety">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- Guardian live view: dark, cinematic. -->
+    <style name="Theme.WomenSafety.Live" parent="Theme.WomenSafety">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
+    </style>
+
+    <style name="ThemeOverlay.WS.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/Shape.WS.Large</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/WS.DialogTitle</item>
+        <item name="colorSurface">@color/ws_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/ws_surface</item>
+    </style>
+
+    <style name="WS.DialogTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textAppearance">@style/TextAppearance.WS.HeadlineSmall</item>
+    </style>
+
+    <style name="ThemeOverlay.WS.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.WS.BottomSheet</item>
+    </style>
+
+    <style name="Widget.WS.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/ws_surface</item>
+        <item name="shapeAppearance">@style/Shape.WS.Sheet</item>
     </style>
 </resources>

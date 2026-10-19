@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Shield -->
+    <path
+        android:fillColor="@color/ws_plum"
+        android:pathData="M24,3L7.5,9.4v12.1c0,10.6 7,20.3 16.5,23.1c9.5,-2.8 16.5,-12.5 16.5,-23.1V9.4z" />
+    <!-- Beacon ring -->
+    <path
+        android:pathData="M24,12.5a9.5,9.5 0 1,0 0.01,0z"
+        android:strokeWidth="2"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.45" />
+    <!-- Beacon core -->
+    <path
+        android:fillColor="@color/ws_sos"
+        android:pathData="M24,17a5,5 0 1,0 0.01,0z" />
+</vector>
