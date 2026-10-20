@@ -4,6 +4,8 @@ A personal safety app for Android. One tap-and-hold (or holding **Volume Up for 
 
 Everything runs on free services — there is no paid server.
 
+> **Project status:** feature-complete in code; builds and installs cleanly (verified on an Android 16 emulator). Still needs Firebase + Maps setup and real-phone testing — see **[PENDING.md](PENDING.md)** for the exact list of what's left and how to resume.
+
 ---
 
 ## Features
@@ -14,8 +16,10 @@ Everything runs on free services — there is no paid server.
 - During SOS the phone:
   - shares **precise location every ~5 s** with her circle,
   - rings a **loud alarm on every guardian's phone** (even on silent/DND where allowed, over the lock screen),
-  - streams **live video + audio** to guardians who open the live view (WebRTC, phone-to-phone),
-  - saves a **photo every 4 s** and **audio in 15-second clips** — on the phone *and* in the cloud, so evidence survives even if the phone is taken,
+  - streams **live video + audio** wirelessly to guardians (WebRTC, phone-to-phone over Wi-Fi or mobile data). Their phone rings and opens the live view straight away,
+  - lets guardians **switch between her front and back camera** (Front | Back switch on their screen shows which one is live),
+  - **records the live stream as MP4 video with sound** while it's live, in 30-second files, so nothing is lost if the phone is switched off or taken. Recorded on **her phone** *and* on **each guardian's phone** that is watching,
+  - saves a **photo every 4 s** and **audio in 15-second clips** — on the phone *and* in the cloud (videos are too big for the free cloud tier, so they stay on the phones),
   - texts **SMS contacts** with a Google Maps link (works without internet), then every 3 minutes.
 - If the phone is switched off mid-SOS, SOS resumes when it turns back on.
 
@@ -27,6 +31,7 @@ Everything runs on free services — there is no paid server.
 
 ### 3. News and crime map
 - **News tab:** Top stories, Women's safety, *Near you* (her city) and Crime alerts — from Google News RSS (India edition). Pull to refresh.
+- **Evidence vault:** every SOS (and every live stream a guardian watched) appears as a session with its videos, photos and audio — play, share or delete.
 - **Crime map tab:** Google Map with a coloured dot per city for **crimes against women**, coloured relative to the average (Low / Average / High / Very high). Tap a city for the figure, its source, and the **latest local safety news** for that city.
 
 ### 4. Redesigned UI
