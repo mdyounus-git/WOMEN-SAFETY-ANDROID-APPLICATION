@@ -12,6 +12,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import org.webrtc.AudioTrackSink;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 import org.webrtc.audio.JavaAudioDeviceModule;
@@ -125,13 +126,35 @@ public final class Mp4Recorder implements VideoSink {
         });
     }
 
-    /** Feed 16-bit PCM audio (from WebRTC's microphone or speaker callbacks). */
+    /** Feed 16-bit PCM audio from WebRTC's microphone callback (the SOS phone). */
     public void onAudio(@NonNull JavaAudioDeviceModule.AudioSamples samples) {
         if (!running || samples.getAudioFormat() != AudioFormat.ENCODING_PCM_16BIT) return;
+        onPcm(samples.getData(), samples.getSampleRate(), samples.getChannelCount());
+    }
+
+    /**
+     * Audio sink for a received WebRTC audio track (the guardian's phone). Gets the decoded audio
+     * before the speaker volume is applied, so muting the speaker doesn't mute the recording.
+     */
+    @NonNull
+    public AudioTrackSink audioSink() {
+        return (data, bitsPerSample, sampleRate, channels, frames, captureTimeMs) -> {
+            if (!running || bitsPerSample != 16 || data == null) return;
+            int bytes = frames * channels * 2;
+            ByteBuffer src = data.duplicate();
+            if (src.remaining() < bytes) bytes = src.remaining();
+            byte[] pcm = new byte[bytes];
+            src.get(pcm);
+            onPcm(pcm, sampleRate, channels);
+        };
+    }
+
+    private void onPcm(@NonNull byte[] pcmData, int sampleRate, int channelCount) {
+        if (!running || sampleRate <= 0 || channelCount <= 0) return;
         final long now = System.nanoTime();
-        final byte[] pcm = samples.getData();
-        final int rate = samples.getSampleRate();
-        final int channels = samples.getChannelCount();
+        final byte[] pcm = pcmData;
+        final int rate = sampleRate;
+        final int channels = channelCount;
         lastAudioRate = rate;
         lastAudioChannels = channels;
         lastAudioNs = now;

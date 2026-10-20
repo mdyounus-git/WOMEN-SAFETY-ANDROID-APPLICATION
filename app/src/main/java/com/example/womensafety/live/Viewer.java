@@ -88,6 +88,8 @@ public final class Viewer {
     private SurfaceViewRenderer renderer;
     private VideoTrack remoteVideo;
     private AudioTrack remoteAudio;
+    @Nullable
+    private org.webrtc.AudioTrackSink remoteAudioSink;
     private String nonce;
     private boolean offerApplied;
     private boolean closed;
@@ -210,12 +212,7 @@ public final class Viewer {
     private void createFactory() {
         if (factory != null || closed) return;
         RtcEnv.ensureInitialized(app);
-        adm = JavaAudioDeviceModule.builder(app)
-                .setPlaybackSamplesReadyCallback(samples -> {
-                    Mp4Recorder r = recorder;
-                    if (r != null) r.onAudio(samples);
-                })
-                .createAudioDeviceModule();
+        adm = JavaAudioDeviceModule.builder(app).createAudioDeviceModule();
         factory = PeerConnectionFactory.builder()
                 .setAudioDeviceModule(adm)
                 .setVideoEncoderFactory(new DefaultVideoEncoderFactory(egl.getEglBaseContext(), true, true))
@@ -272,6 +269,8 @@ public final class Viewer {
         } else if (track instanceof AudioTrack) {
             remoteAudio = (AudioTrack) track;
             remoteAudio.setVolume(muted ? 0 : 1);
+            remoteAudioSink = ensureRecorder().audioSink();
+            remoteAudio.addSink(remoteAudioSink);
         }
     }
 
@@ -364,8 +363,15 @@ public final class Viewer {
             } catch (Throwable ignored) {
             }
         }
+        if (remoteAudio != null && remoteAudioSink != null) {
+            try {
+                remoteAudio.removeSink(remoteAudioSink);
+            } catch (Throwable ignored) {
+            }
+        }
         remoteVideo = null;
         remoteAudio = null;
+        remoteAudioSink = null;
         if (pc != null) {
             try {
                 pc.dispose();

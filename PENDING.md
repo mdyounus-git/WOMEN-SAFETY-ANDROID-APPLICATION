@@ -1,6 +1,6 @@
 # Milestone: v6.0 — what's done and what's left
 
-Last updated: 20 Oct 2026. Branch: `claude/safety-v6`.
+Last updated: 20 Oct 2026. Branches: `main` and `claude/safety-v6` (same code).
 This file is the single source of truth for picking the work back up. Tick items off as they're finished.
 
 ---
@@ -47,7 +47,7 @@ The emulator mirror in Android Studio didn't accept taps, so these were **not** 
 - [ ] **11. New launcher icon** — the app still uses the old v5 icon; replace with the shield + beacon logo (`res/drawable/ws_logo.xml`) via Android Studio → *New → Image Asset*.
 - [ ] **12. Release build + APK download** — create a signing key (*Build → Generate Signed App Bundle / APK*), build a release APK, and attach it to a **GitHub Release** so people can install without Android Studio.
 - [ ] **13. Crime data gaps** — Bengaluru, Mumbai, Hyderabad, Pune and others show case counts or "no figure". Fill rates from the latest NCRB *Crime in India* report in `app/src/main/assets/crime_stats.json`.
-- [ ] **14. Guardian mute also silences the guardian's recording** (her phone's own recording is unaffected). Fix: mute playback via the audio route instead of the track volume.
+- [x] **14. Guardian mute no longer silences the guardian's recording** — the recorder now takes the received audio through an `AudioTrackSink`, before speaker volume is applied.
 - [ ] **15. Merge `claude/safety-v6` into `main`** once items 1–9 pass.
 
 ## 💡 Ideas (not started)
