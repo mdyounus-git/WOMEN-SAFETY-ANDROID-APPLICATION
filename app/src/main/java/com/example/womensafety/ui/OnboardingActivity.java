@@ -31,6 +31,7 @@ public class OnboardingActivity extends AppCompatActivity {
         b = ActivityOnboardingBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
         Ui.padForSystemBars(b.column, true, true);
+        if (savedInstanceState == null) Ui.staggerIn(b.column);
 
         Prefs prefs = Prefs.get(this);
         b.name.setText(prefs.getName());

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12+ system splash: app icon on the warm paper colour. -->
+    <style name="Theme.WomenSafety.Launch" parent="Theme.WomenSafety">
+        <item name="android:windowBackground">@drawable/bg_launch</item>
+        <item name="android:windowSplashScreenBackground">@color/ws_paper</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+    </style>
+</resources>

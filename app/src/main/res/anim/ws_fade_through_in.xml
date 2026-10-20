@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tab switch: new tab fades in while growing from 96% (Material "fade through"). -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/decelerate_cubic"
+    android:shareInterpolator="true">
+    <alpha
+        android:duration="210"
+        android:fromAlpha="0"
+        android:startOffset="70"
+        android:toAlpha="1" />
+    <scale
+        android:duration="210"
+        android:fromXScale="0.96"
+        android:fromYScale="0.96"
+        android:pivotX="50%"
+        android:pivotY="40%"
+        android:startOffset="70"
+        android:toXScale="1"
+        android:toYScale="1" />
+</set>

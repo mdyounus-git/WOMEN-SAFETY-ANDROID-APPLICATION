@@ -36,6 +36,9 @@ Everything runs on free services — there is no paid server.
 
 ### 4. Redesigned UI
 Material 3 with a custom design: warm "paper" background with a fine grain texture, deep plum + coral palette, Fraunces (display) and Manrope (UI) fonts, floating bottom bar, a pulsing SOS button with a hold-progress ring, full dark mode, and edge-to-edge layouts.
+- **New app icon:** shield with an SOS beacon on a plum-to-coral gradient; adapts to every launcher shape and to Android 13+ themed icons.
+- **Icons:** Google's Material Symbols (Rounded) throughout; the bottom bar shows filled icons for the selected tab; gradient badges behind feature icons.
+- **Motion:** fade-through when switching tabs, slide transitions between screens, a gentle squeeze when cards and buttons are pressed, content easing in on screen open, Android 14+ predictive back, and a branded launch screen. All motion respects the system *Remove animations* setting.
 
 ---
 
@@ -156,4 +159,4 @@ database.rules.json              Realtime Database security rules (paste into Fi
 - Removed unreachable code (Deepfake and Crime Risk screens that weren't registered, duplicate camera helpers, unused receivers) and the crime "hotspots" that were made-up sample data — replaced by real NCRB figures.
 - Added unit tests.
 
-Fonts: Fraunces and Manrope, SIL Open Font License (see `licenses/`).
+Fonts: Fraunces and Manrope, SIL Open Font License. Icons: Material Symbols, Apache 2.0 (see `licenses/`).

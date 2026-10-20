@@ -15,7 +15,8 @@
         android:id="@+id/iconWrap"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/bg_avatar">
+        android:background="@drawable/bg_icon_badge"
+            android:elevation="2dp">
 
         <ImageView
             android:id="@+id/icon"
@@ -23,7 +24,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:importantForAccessibility="no"
-            app:tint="@color/ws_on_plum_container"
+            app:tint="@color/white"
             tools:src="@drawable/ic_location" />
     </FrameLayout>
 

@@ -39,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         b = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
         Ui.padForSystemBars(b.column, true, true);
+        if (savedInstanceState == null) Ui.staggerIn(b.column);
 
         b.back.setOnClickListener(v -> finish());
         b.edit.setOnClickListener(v -> editProfile());

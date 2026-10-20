@@ -1,20 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- In-app logo: the app icon as a rounded badge. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="48dp"
     android:height="48dp"
-    android:viewportWidth="48"
-    android:viewportHeight="48">
-    <!-- Shield -->
-    <path
-        android:fillColor="@color/ws_plum"
-        android:pathData="M24,3L7.5,9.4v12.1c0,10.6 7,20.3 16.5,23.1c9.5,-2.8 16.5,-12.5 16.5,-23.1V9.4z" />
-    <!-- Beacon ring -->
-    <path
-        android:pathData="M24,12.5a9.5,9.5 0 1,0 0.01,0z"
-        android:strokeWidth="2"
-        android:strokeColor="#FFFFFF"
-        android:strokeAlpha="0.45" />
-    <!-- Beacon core -->
-    <path
-        android:fillColor="@color/ws_sos"
-        android:pathData="M24,17a5,5 0 1,0 0.01,0z" />
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:pathData="M32,0h44a32,32 0,0 1,32 32v44a32,32 0,0 1,-32 32h-44a32,32 0,0 1,-32 -32v-44a32,32 0,0 1,32 -32z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="108"
+                android:endY="108"
+                android:startX="0"
+                android:startY="0"
+                android:type="linear">
+                <item android:color="#FF3B1149" android:offset="0" />
+                <item android:color="#FF7A2E8E" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M32,0h44a32,32 0,0 1,32 32v44a32,32 0,0 1,-32 32h-44a32,32 0,0 1,-32 -32v-44a32,32 0,0 1,32 -32z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="84"
+                android:centerY="92"
+                android:gradientRadius="65"
+                android:type="radial">
+                <item android:color="#8CFF6B70" android:offset="0" />
+                <item android:color="#00FF6B70" android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <group
+        android:pivotX="54"
+        android:pivotY="54.5"
+        android:scaleX="1.35"
+        android:scaleY="1.35">
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M54,31 C59,33.6 65,35.6 71.5,36.6 C72.6,36.8 73.4,37.7 73.4,38.8 L73.4,52 C73.4,64.5 65.4,74.2 54.9,78.6 C54.3,78.85 53.7,78.85 53.1,78.6 C42.6,74.2 34.6,64.5 34.6,52 L34.6,38.8 C34.6,37.7 35.4,36.8 36.5,36.6 C43,35.6 49,33.6 54,31 Z" />
+        <path
+            android:fillColor="#29E2434B"
+            android:pathData="M54,53.5m-10.5,0a10.5,10.5 0,1 1,21 0a10.5,10.5 0,1 1,-21 0" />
+        <path
+            android:fillColor="#FFE2434B"
+            android:pathData="M54,53.5m-6.2,0a6.2,6.2 0,1 1,12.4 0a6.2,6.2 0,1 1,-12.4 0" />
+    </group>
 </vector>

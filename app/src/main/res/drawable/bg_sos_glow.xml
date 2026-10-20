@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft coral halo behind the SOS button. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <gradient
+        android:centerX="0.5"
+        android:centerY="0.5"
+        android:endColor="#00E2434B"
+        android:gradientRadius="50%p"
+        android:startColor="@color/ws_sos_glow"
+        android:type="radial" />
+</shape>

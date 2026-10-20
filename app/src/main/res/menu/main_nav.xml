@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_shield"
+        android:icon="@drawable/ic_nav_safety"
         android:title="@string/nav_home" />
     <item
         android:id="@+id/nav_map"
-        android:icon="@drawable/ic_map"
+        android:icon="@drawable/ic_nav_map"
         android:title="@string/nav_map" />
     <item
         android:id="@+id/nav_news"
-        android:icon="@drawable/ic_news"
+        android:icon="@drawable/ic_nav_news"
         android:title="@string/nav_news" />
     <item
         android:id="@+id/nav_circle"
-        android:icon="@drawable/ic_group"
+        android:icon="@drawable/ic_nav_circle"
         android:title="@string/nav_circle" />
 </menu>

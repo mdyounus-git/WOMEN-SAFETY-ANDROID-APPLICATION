@@ -91,6 +91,30 @@ public final class Ui {
         }
     }
 
+    /**
+     * Entrance animation: the group's children fade in and rise a little, one after another.
+     * Skipped when the user has turned animations off (Settings → Accessibility).
+     */
+    public static void staggerIn(@NonNull ViewGroup group) {
+        if (!android.animation.ValueAnimator.areAnimatorsEnabled()) return;
+        float rise = dp(group.getContext(), 18);
+        int shown = 0;
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View child = group.getChildAt(i);
+            if (child.getVisibility() != View.VISIBLE) continue;
+            child.setAlpha(0f);
+            child.setTranslationY(rise);
+            child.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setStartDelay(Math.min(shown, 10) * 35L)
+                    .setDuration(420)
+                    .setInterpolator(new android.view.animation.DecelerateInterpolator(2.2f))
+                    .start();
+            shown++;
+        }
+    }
+
     /** First letter(s) of a name for avatar bubbles. */
     @NonNull
     public static String initials(@NonNull String name) {

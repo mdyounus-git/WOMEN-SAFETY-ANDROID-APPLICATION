@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         Ui.marginForNavBar(b.navHolder);
 
         b.nav.setOnItemSelectedListener(item -> {
+            if (item.getItemId() != currentTab) {
+                b.nav.performHapticFeedback(android.view.HapticFeedbackConstants.CLOCK_TICK);
+            }
             show(item.getItemId());
             return true;
         });
@@ -106,9 +109,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void show(@IdRes int tabId) {
+        boolean switching = tabId != currentTab
+                && getSupportFragmentManager().findFragmentByTag(tag(currentTab)) != null;
         currentTab = tabId;
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction tx = fm.beginTransaction().setReorderingAllowed(true);
+        if (switching) {
+            // Material "fade through": the old tab fades out, the new one fades and grows in.
+            tx.setCustomAnimations(R.anim.ws_fade_through_in, R.anim.ws_fade_through_out);
+        }
         for (int id : new int[]{R.id.nav_home, R.id.nav_map, R.id.nav_news, R.id.nav_circle}) {
             Fragment f = fm.findFragmentByTag(tag(id));
             if (id == tabId) {

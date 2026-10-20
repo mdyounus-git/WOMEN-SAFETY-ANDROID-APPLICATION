@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed icon (Android 13+): shield with the beacon cut out. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="54.5"
+        android:scaleX="1.12"
+        android:scaleY="1.12">
+        <path
+            android:fillColor="#FF000000"
+            android:fillType="evenOdd"
+            android:pathData="M54,31 C59,33.6 65,35.6 71.5,36.6 C72.6,36.8 73.4,37.7 73.4,38.8 L73.4,52 C73.4,64.5 65.4,74.2 54.9,78.6 C54.3,78.85 53.7,78.85 53.1,78.6 C42.6,74.2 34.6,64.5 34.6,52 L34.6,38.8 C34.6,37.7 35.4,36.8 36.5,36.6 C43,35.6 49,33.6 54,31 Z M54,53.5m-6.2,0a6.2,6.2 0,1 0,12.4 0a6.2,6.2 0,1 0,-12.4 0" />
+    </group>
+</vector>

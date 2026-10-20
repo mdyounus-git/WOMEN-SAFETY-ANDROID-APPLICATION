@@ -35,4 +35,8 @@
     <color name="ws_risk_unknown">#8C8190</color>
 
     <color name="ws_scrim">#CC000000</color>
+    <!-- Icon badges & SOS halo -->
+    <color name="ws_badge_start">#6B3483</color>
+    <color name="ws_badge_end">#B0477A</color>
+    <color name="ws_sos_glow">#2EFF6B70</color>
 </resources>

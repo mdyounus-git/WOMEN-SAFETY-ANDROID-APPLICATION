@@ -44,4 +44,8 @@
     <color name="ws_scrim">#99140D18</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <!-- Icon badges & SOS halo -->
+    <color name="ws_badge_start">#5A2670</color>
+    <color name="ws_badge_end">#B0477A</color>
+    <color name="ws_sos_glow">#33E2434B</color>
 </resources>

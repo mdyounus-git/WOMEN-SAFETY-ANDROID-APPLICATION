@@ -194,7 +194,7 @@ public class LocationShareService extends Service {
 
     private void notifyNewGuardian(String name) {
         Notification n = new NotificationCompat.Builder(this, Notifications.CH_CIRCLE)
-                .setSmallIcon(R.drawable.ic_group)
+                .setSmallIcon(R.drawable.ic_group_fill)
                 .setColor(ContextCompat.getColor(this, R.color.ws_plum))
                 .setContentTitle(getString(R.string.notif_new_guardian_title, name))
                 .setContentText(getString(R.string.notif_new_guardian_text))
@@ -209,7 +209,7 @@ public class LocationShareService extends Service {
                 ? getString(R.string.sharing_notif_your_circle)
                 : android.text.TextUtils.join(", ", guardianNames);
         return new NotificationCompat.Builder(this, Notifications.CH_SHARING)
-                .setSmallIcon(R.drawable.ic_location)
+                .setSmallIcon(R.drawable.ic_location_fill)
                 .setColor(ContextCompat.getColor(this, R.color.ws_plum))
                 .setContentTitle(getString(R.string.sharing_notif_title))
                 .setContentText(getString(R.string.sharing_notif_text, who))

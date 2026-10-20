@@ -157,7 +157,7 @@ public class GuardianWatchService extends Service {
         PendingIntent pi = PendingIntent.getActivity(this, wardUid.hashCode(), view,
                 PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         Notification n = new NotificationCompat.Builder(this, Notifications.CH_ALERTS)
-                .setSmallIcon(R.drawable.ic_warning)
+                .setSmallIcon(R.drawable.ic_warning_fill)
                 .setColor(ContextCompat.getColor(this, R.color.ws_sos))
                 .setContentTitle(getString(R.string.alert_title, name))
                 .setContentText(getString(R.string.alert_text))
@@ -181,7 +181,7 @@ public class GuardianWatchService extends Service {
                 ? getString(R.string.watch_notif_text_generic)
                 : getResources().getQuantityString(R.plurals.watch_notif_text, count, count);
         return new NotificationCompat.Builder(this, Notifications.CH_SHARING)
-                .setSmallIcon(R.drawable.ic_shield)
+                .setSmallIcon(R.drawable.ic_shield_fill)
                 .setColor(ContextCompat.getColor(this, R.color.ws_plum))
                 .setContentTitle(getString(R.string.watch_notif_title))
                 .setContentText(text)

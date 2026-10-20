@@ -123,6 +123,7 @@
 
     <!-- ===== Components ===== -->
     <style name="Widget.WS.Card" parent="Widget.Material3.CardView.Outlined">
+        <item name="android:stateListAnimator">@animator/ws_press</item>
         <item name="cardBackgroundColor">@color/ws_surface</item>
         <item name="strokeColor">@color/ws_outline</item>
         <item name="strokeWidth">1dp</item>
@@ -142,6 +143,7 @@
     </style>
 
     <style name="Widget.WS.Button" parent="Widget.Material3.Button">
+        <item name="android:stateListAnimator">@animator/ws_press</item>
         <item name="android:minHeight">52dp</item>
         <item name="android:textAppearance">@style/TextAppearance.WS.Label</item>
         <item name="shapeAppearance">@style/Shape.WS.Pill</item>
@@ -152,6 +154,7 @@
     </style>
 
     <style name="Widget.WS.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:stateListAnimator">@animator/ws_press</item>
         <item name="android:minHeight">48dp</item>
         <item name="android:textAppearance">@style/TextAppearance.WS.Label</item>
         <item name="shapeAppearance">@style/Shape.WS.Pill</item>
@@ -163,6 +166,7 @@
     </style>
 
     <style name="Widget.WS.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:stateListAnimator">@animator/ws_press</item>
         <item name="android:minHeight">48dp</item>
         <item name="android:textAppearance">@style/TextAppearance.WS.Label</item>
         <item name="shapeAppearance">@style/Shape.WS.Pill</item>
@@ -223,6 +227,14 @@
 
     <style name="Widget.WS.BottomNav.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/ws_plum_container</item>
+    </style>
+
+    <!-- Screen-to-screen motion -->
+    <style name="WS.WindowAnimations" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/ws_screen_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/ws_screen_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/ws_screen_return</item>
+        <item name="android:activityCloseExitAnimation">@anim/ws_screen_close</item>
     </style>
 
     <!-- Status pill (e.g. "Sharing live location") -->

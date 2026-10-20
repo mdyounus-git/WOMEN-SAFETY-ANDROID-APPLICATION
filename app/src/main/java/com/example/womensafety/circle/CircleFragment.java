@@ -65,6 +65,7 @@ public class CircleFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Ui.padForSystemBars(b.column, true, true);
+        if (savedInstanceState == null) Ui.staggerIn(b.column);
         boolean configured = Backend.isConfigured(requireContext());
         b.notConfigured.setVisibility(configured ? View.GONE : View.VISIBLE);
         b.addGuardian.setEnabled(configured);

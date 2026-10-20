@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment implements SosState.Observer {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Ui.padForSystemBars(b.column, true, true);
+        if (savedInstanceState == null) Ui.staggerIn(b.column);
 
         b.avatar.setOnClickListener(v -> startActivity(new Intent(requireContext(), ProfileActivity.class)));
         b.setupCard.setOnClickListener(v -> startActivity(new Intent(requireContext(), SetupActivity.class)));

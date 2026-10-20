@@ -99,11 +99,23 @@
         </LinearLayout>
 
         <!-- SOS stage -->
-        <com.example.womensafety.ui.SosButton
-            android:id="@+id/sosButton"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/ws_sos_size"
-            android:layout_marginTop="18dp" />
+            android:layout_marginTop="18dp">
+
+            <View
+                android:layout_width="@dimen/ws_sos_size"
+                android:layout_height="@dimen/ws_sos_size"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_sos_glow"
+                android:importantForAccessibility="no" />
+
+            <com.example.womensafety.ui.SosButton
+                android:id="@+id/sosButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/sosHint"

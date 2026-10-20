@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Filled when the tab is selected, outlined otherwise. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_shield_fill" android:state_checked="true" />
+    <item android:drawable="@drawable/ic_shield" />
+</selector>

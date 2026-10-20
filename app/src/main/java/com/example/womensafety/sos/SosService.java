@@ -285,7 +285,7 @@ public class SosService extends Service implements Broadcaster.Listener {
                 ? getResources().getQuantityString(R.plurals.sos_notif_watching, viewers, viewers)
                 : getString(R.string.sos_notif_text);
         return new NotificationCompat.Builder(this, Notifications.CH_SOS)
-                .setSmallIcon(R.drawable.ic_shield)
+                .setSmallIcon(R.drawable.ic_shield_fill)
                 .setColor(ContextCompat.getColor(this, R.color.ws_sos))
                 .setContentTitle(getString(R.string.sos_notif_title))
                 .setContentText(text)

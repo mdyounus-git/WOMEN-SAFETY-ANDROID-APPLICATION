@@ -16,7 +16,7 @@ This file is the single source of truth for picking the work back up. Tick items
 - [x] **SMS fallback** to emergency contacts (no internet needed).
 - [x] **Evidence vault** — videos, photos, audio per session; streams received from others are labelled.
 - [x] **News tab** (Google News RSS) and **crime map** (Google Maps + NCRB figures, local news per city).
-- [x] **New UI** — Material 3, custom fonts, paper texture, dark mode.
+- [x] **New UI** — Material 3, custom fonts, paper texture, dark mode, Material Symbols Rounded icons (filled when selected), gradient icon badges, fade-through tabs, screen slide transitions, press feedback, staggered entrances, predictive back, Android 12+ splash.
 - [x] **Code quality** — removed plain-text password login, dead screens and fake crime data; crash-proofing of foreground services and maps; unit tests (13 passing).
 - [x] **Build verified** — real Gradle build in Android Studio, installed and launched on a Pixel 5 emulator (Android 16) with no errors.
 
@@ -44,7 +44,7 @@ The emulator mirror in Android Studio didn't accept taps, so these were **not** 
 ## ⏳ Pending — remaining development work
 
 - [ ] **10. Screenshots for the README** — capture Home, SOS active, Circle/QR, guardian live view, News, Crime map, Evidence vault on a real phone and add them to `docs/screenshots/` (and the README table below).
-- [ ] **11. New launcher icon** — the app still uses the old v5 icon; replace with the shield + beacon logo (`res/drawable/ws_logo.xml`) via Android Studio → *New → Image Asset*.
+- [x] **11. New launcher icon** — adaptive shield + beacon icon with Android 13+ themed (monochrome) layer, matching in-app logo and Play Store PNG.
 - [ ] **12. Release build + APK download** — create a signing key (*Build → Generate Signed App Bundle / APK*), build a release APK, and attach it to a **GitHub Release** so people can install without Android Studio.
 - [ ] **13. Crime data gaps** — Bengaluru, Mumbai, Hyderabad, Pune and others show case counts or "no figure". Fill rates from the latest NCRB *Crime in India* report in `app/src/main/assets/crime_stats.json`.
 - [x] **14. Guardian mute no longer silences the guardian's recording** — the recorder now takes the received audio through an `AudioTrackSink`, before speaker volume is applied.
