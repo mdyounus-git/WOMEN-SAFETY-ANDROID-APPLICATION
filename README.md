@@ -4,7 +4,7 @@ A personal safety app for Android. One tap-and-hold (or holding **Volume Up for 
 
 Everything runs on free services — there is no paid server.
 
-> **Project status:** feature-complete in code; builds and installs cleanly (verified on an Android 16 emulator). Still needs Firebase + Maps setup and real-phone testing — see **[PENDING.md](PENDING.md)** for the exact list of what's left and how to resume.
+> **Project status:** feature-complete in code; builds and installs cleanly (verified on an Android 16 emulator). Still needs Firebase + Maps setup and real-phone testing — see **[PENDING.md](PENDING.md)** for the exact list of what's left and how to resume
 
 ---
 
