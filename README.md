@@ -157,6 +157,6 @@ database.rules.json              Realtime Database security rules (paste into Fi
 - Volume SOS no longer **blocks the volume button** and no longer holds a permanent wake lock (battery drain). Fixed the in-app volume detector that never fired (it checked a setting that was never saved).
 - SOS: camera/mic now start correctly from the lock screen (Android 14 rules), SMS repeat reduced from every 10 s to every 3 min, evidence is uploaded, and SOS resumes after a reboot.
 - Removed unreachable code (Deepfake and Crime Risk screens that weren't registered, duplicate camera helpers, unused receivers) and the crime "hotspots" that were made-up sample data — replaced by real NCRB figures.
-- Added unit tests.
+
 
 Fonts: Fraunces and Manrope, SIL Open Font License. Icons: Material Symbols, Apache 2.0 (see `licenses/`).
